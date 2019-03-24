@@ -1,0 +1,275 @@
+﻿<?xml version="1.0"?>
+<Tags>
+  <MapPointType>
+    <Header>Channel</Header>
+    <Name>
+      <Title>Name</Title>
+      <Hidden>False</Hidden>
+    </Name>
+    <VisitTimes>
+      <Title>VisitTimes</Title>
+      <Hidden>False</Hidden>
+    </VisitTimes>
+  </MapPointType>
+  <Geocoding>
+    <Code>
+      <Title>Code</Title>
+      <Hidden>False</Hidden>
+    </Code>
+    <Name>
+      <Title>Name</Title>
+      <Hidden>False</Hidden>
+    </Name>
+    <Address>
+      <Title>Address</Title>
+      <Hidden>False</Hidden>
+    </Address>
+    <CleanAddress>
+      <Title>Google Address</Title>
+      <Hidden>False</Hidden>
+    </CleanAddress>
+    <GeocodeAccuracy>
+      <Title>Google Accuracy</Title>
+      <Hidden>False</Hidden>
+    </GeocodeAccuracy>
+    <X>
+      <Title>X</Title>
+    </X>
+    <Y>
+      <Title>Y</Title>
+    </Y>
+  </Geocoding>
+  <MapPoint>
+    <Header>Customer</Header>
+    <Code>
+      <Title>Code</Title>
+      <Hidden>False</Hidden>
+    </Code>
+    <Name>
+      <Title>Name</Title>
+      <Hidden>False</Hidden>
+    </Name>
+    <Address>
+      <Title>Address</Title>
+      <Hidden>False</Hidden>
+    </Address>
+    <CleanAddress>
+      <Title>Clean Address</Title>
+      <Hidden>False</Hidden>
+    </CleanAddress>
+    <X>
+      <Title>X</Title>
+      <Hidden>False</Hidden>
+    </X>
+    <Y>
+      <Title>Y</Title>
+      <Hidden>False</Hidden>
+    </Y>
+    <MapPointType>
+      <Title>Channel</Title>
+      <Hidden>False</Hidden>
+    </MapPointType>
+    <Detail1>
+      <Title>Detail1</Title>
+      <Hidden>False</Hidden>
+    </Detail1>
+    <Detail2>
+      <Title>Detail2</Title>
+      <Hidden>False</Hidden>
+    </Detail2>
+    <Detail3>
+      <Title>Detail3</Title>
+      <Hidden>False</Hidden>
+    </Detail3>
+    <Detail4>
+      <Title>Detail4</Title>
+      <Hidden>False</Hidden>
+    </Detail4>
+    <Detail5>
+      <Title>Detail5</Title>
+      <Hidden>False</Hidden>
+    </Detail5>
+    <UserName>
+      <Title>User</Title>
+      <Hidden>False</Hidden>
+    </UserName>
+    <ParentUserName>
+      <Title>Parent User</Title>
+      <Hidden>False</Hidden>
+    </ParentUserName>
+    <IsActive>
+      <Title>Status</Title>
+      <Hidden>False</Hidden>
+    </IsActive>
+    <AllowCallsOn>
+      <Title>Allow Calls On</Title>
+    </AllowCallsOn>
+    <AllowCallMon>
+      <Title>Mon</Title>
+    </AllowCallMon>
+    <AllowCallTue>
+      <Title>Tue</Title>
+    </AllowCallTue>
+    <AllowCallWed>
+      <Title>Wed</Title>
+    </AllowCallWed>
+    <AllowCallThu>
+      <Title>Thu</Title>
+    </AllowCallThu>
+    <AllowCallFri>
+      <Title>Fri</Title>
+    </AllowCallFri>
+    <AllowCallSat>
+      <Title>Sat</Title>
+    </AllowCallSat>
+    <AllowCallSun>
+      <Title>Sun</Title>
+    </AllowCallSun>
+    <DefaultAllocation>
+      <Title>Default Allocation</Title>
+      <Hidden>False</Hidden>
+    </DefaultAllocation>
+  </MapPoint>
+  <Scenario>
+    <Header>Sales Drive</Header>
+    <Code>
+      <Title>Code</Title>
+    </Code>
+    <Name>
+      <Title>Name</Title>
+    </Name>
+    <Locked>
+      <Title>Locked</Title>
+    </Locked>
+    <ScenarioDate>
+      <Title>Sales Drive Date</Title>
+    </ScenarioDate>
+    <Master>
+      <Title>Master</Title>
+    </Master>
+    <Frequency>
+      <Title>Frequency</Title>
+    </Frequency>
+    <SourceScenario>
+      <Title>Source Scenario</Title>
+    </SourceScenario>
+    <UserMaster>
+      <Title>User Master</Title>
+    </UserMaster>
+  </Scenario>
+  <Allocation>
+    <Header>Territory</Header>
+    <Code>
+      <Title>Code</Title>
+    </Code>
+    <Name>
+      <Title>Name</Title>
+    </Name>
+    <ColourCode>
+      <Title>Colour Code</Title>
+    </ColourCode>
+    <TravelPercent>
+      <Title>Travel Percent</Title>
+    </TravelPercent>
+    <WorkloadTemplate>
+      <Title>Workload Template</Title>
+    </WorkloadTemplate>
+    <Master>
+      <Title>Master</Title>
+    </Master>
+  </Allocation>
+  <WorkloadTemplate>
+    <Code>
+      <Title>Code</Title>
+      <Hidden>False</Hidden>
+    </Code>
+    <AvailableMinutes>
+      <Title>Available Minutes</Title>
+      <Hidden>False</Hidden>
+    </AvailableMinutes>
+    <IgnoredMinutesStart>
+      <Title>Ignored Minutes Start</Title>
+      <Hidden>False</Hidden>
+    </IgnoredMinutesStart>
+    <IgnoredMinutesEnd>
+      <Title>Ignored Minutes End</Title>
+      <Hidden>False</Hidden>
+    </IgnoredMinutesEnd>
+    <IgnoredKmStart>
+      <Title>Ignored Km Start</Title>
+      <Hidden>False</Hidden>
+    </IgnoredKmStart>
+    <IgnoredKmEnd>
+      <Title>Ignored Km End</Title>
+      <Hidden>False</Hidden>
+    </IgnoredKmEnd>
+  </WorkloadTemplate>
+  <Contract>
+    <Frequency>
+      <Title>Frequency</Title>
+      <Hidden>False</Hidden>
+    </Frequency>
+    <VisitTime>
+      <Title>Visit Time</Title>
+      <Hidden>False</Hidden>
+    </VisitTime>
+    <Flagfall>
+      <Title>Flagfall</Title>
+      <Hidden>False</Hidden>
+    </Flagfall>
+  </Contract>
+  <Workload>
+    <ScenarioName>
+      <Title>Scenario</Title>
+      <Hidden>False</Hidden>
+    </ScenarioName>
+    <AllocationName>
+      <Title>Allocation</Title>
+      <Hidden>False</Hidden>
+    </AllocationName>
+    <Template>
+      <Title>Template</Title>
+      <Hidden>False</Hidden>
+    </Template>
+    <Visits>
+      <Title>Visits</Title>
+      <Hidden>False</Hidden>
+    </Visits>
+    <TotalTime>
+      <Title>Total Time</Title>
+      <Hidden>False</Hidden>
+    </TotalTime>
+    <VisitTime>
+      <Title>Visit Time</Title>
+      <Hidden>False</Hidden>
+    </VisitTime>
+    <Flagfall>
+      <Title>Flagfall</Title>
+      <Hidden>False</Hidden>
+    </Flagfall>
+    <TravelTime>
+      <Title>Travel Time</Title>
+      <Hidden>False</Hidden>
+    </TravelTime>
+    <Utilization>
+      <Title>Utilization</Title>
+      <Hidden>False</Hidden>
+    </Utilization>
+    <TravelPercent>
+      <Title>Travel %</Title>
+      <Hidden>False</Hidden>
+    </TravelPercent>
+    <Distance>
+      <Title>Travel Distance</Title>
+      <Hidden>False</Hidden>
+    </Distance>
+    <SleepOuts1>
+      <Title>Sleep Outs</Title>
+      <Hidden>False</Hidden>
+    </SleepOuts1>
+    <SleepOuts2>
+      <Title>Fly Outs</Title>
+      <Hidden>False</Hidden>
+    </SleepOuts2>
+  </Workload>
+</Tags>

@@ -1,0 +1,81 @@
+﻿@using FieldForce.Online.Core
+@{
+  ViewBag.Title = ViewBag.MapPointTypePageTitle;
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section>
+  <h1>
+    @ViewBag.MapPointTypePageTitle
+  </h1>
+</section>
+<section class="content">
+  <div id="managemappointtypes" class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div id="mapPointTypeGrid"></div>
+          <div id="editorwindow"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <input type="hidden" id="typeName" value="@ViewBag.MapPointTypeTypeName" />
+</section>
+<script type="text/x-kendo-template" id="editor-template">
+  <div id="editor">
+    <div id="editorform" class="master-data">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-3">
+              <h5 data-bind="text: nameText"></h5>
+            </div>
+            <div class="col-xs-7">
+              @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+              {
+                <input type="text" name="name" id="name" maxlength="100" class="k-textbox" placeholder="@ViewBag.MapPointTypeTypeName name" data-bind="value:name" data-available data-available-msg="Entered name is not available"
+                       required data-required-msg="Enter name" />
+              }
+              else
+              {
+                <h5 data-bind="text: name"></h5>
+              }
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-3">
+              <h5 data-bind="text: visitTimesText"></h5>
+            </div>
+            <div class="col-xs-7">
+              @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+              {
+                <input type="text" name="visitTimes" id="visitTimes" maxlength="1000" class="k-textbox" placeholder="Visit times" data-bind="value: visitTimes" /><span>eg.25,45</span>
+              }
+              else
+              {
+                <h5 data-bind="text: visitTimes"></h5>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button id="popup-cancel-button" data-bind="click: cancel" class="k-button btn-transparent pull-right">@(!User.IsInRole(GlobalConstants.ReadOnlyRole) ? "Cancel" : "Close")</button>
+        @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+        {
+          <button id="popup-add-button" data-bind="click: addItem" class="k-button pull-right">Create</button>
+          <button id="popup-save-button" data-bind="click: saveItem" class="k-button pull-right">Submit</button>
+        }
+      </div>
+    </div>
+  </div>
+</script>
+<script type="text/x-kendo-template" id="gridtoolbar">
+  <div class="toolbar">
+    @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+    {
+      <button id="addnewrecord" class="k-button k-button-icontext"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Create @ViewBag.MapPointTypeTypeName</button>
+    }
+  </div>
+</script>
+<script src="~/Scripts/app/masterdata/mapPointTypes.js"></script>

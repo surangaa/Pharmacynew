@@ -1,0 +1,139 @@
+﻿@using FieldForce.Online.Core
+@{
+  ViewBag.Title = "Settings";
+}
+<section>
+  <h1>
+    Settings
+  </h1>
+</section>
+<section class="content">
+  <div id="manageSettings" class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div data-role="tabstrip">
+            <ul>
+              <li class=" k-state-active">
+                Application Settings
+              </li>
+              <li>
+                Color Settings
+              </li>
+            </ul>
+            <div>
+              <div id="settingsGrid"></div>
+            </div>
+            <div>
+              <div id="colorSettingsGrid"></div>
+            </div>
+          </div>
+
+          <div id="editorwindow"></div>
+          <div id="colorEditorwindow"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="text/x-kendo-template" id="editor-template">
+  <div id="editor">
+    <div id="editorform">
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default" id="generalPanel">
+          <div class="panel-body">
+            <div class="row" data-bind="invisible: infoVisible">
+              <div class="alert alert-info" data-bind="text: description"></div>
+            </div>
+            <div class="row">
+              <div class="col-xs-3">
+                <h5>Key:</h5>
+              </div>
+              <div class="col-xs-7">
+                <h5 data-bind="text: key"></h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-3">
+                <h5>
+                  Value:
+                </h5>
+              </div>
+              <div class="col-xs-7">
+                @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+                {
+                  <input data-bind="attr: { type: type, class: cssClass, pattern: validationRegex}, value: value, checked:checkboxChecked" validationmessage="Please enter a valid value" name="value" />
+                  <span class="k-invalid-msg" data-for="value"></span>
+                }
+                else
+                {
+                  <h5 data-bind="text: value"></h5>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="alert alert-danger alert-block" data-bind="visible: isErrorVisible, text:errorMessage"></div>
+      <div class="k-state-default">
+        @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+        {
+          <button id="popup-save-button" data-bind="click: saveItem" class="k-button"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Save</button>
+        }
+        <a href="\\#" id="popup-cancel-button" data-bind="click: cancel" class="k-button btn-transparent">@(!User.IsInRole(GlobalConstants.ReadOnlyRole) ? "Cancel" : "Close")</a>
+      </div>
+    </div>
+  </div>
+</script>
+<script type="text/x-kendo-template" id="color-editor-template">
+  <div id="colorEditor">
+    <div id="editorform">
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default" id="generalPanel">
+          <div class="panel-body">
+            <div class="row" data-bind="invisible: infoVisible">
+              <div class="alert alert-info" data-bind="text: description"></div>
+            </div>
+            <div class="row">
+              <div class="col-xs-3">
+                <h5>Key:</h5>
+              </div>
+              <div class="col-xs-7">
+                <h5 data-bind="text: key"></h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-3">
+                <h5>
+                  Color:
+                </h5>
+              </div>
+              <div class="col-xs-7">
+                @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+                {
+                  <input data-role="colorpicker" data-bind="value: value" validationmessage="Please enter a valid value" name="value" />
+                  <span class="k-invalid-msg" data-for="value"></span>
+                }
+                else
+                {
+                  <div style="width: 40px; height: 20px; margin-top:5px" data-bind="style: {backgroundColor: value}"></div>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="alert alert-danger alert-block" data-bind="visible: isErrorVisible, text:errorMessage"></div>
+      <div class="k-state-default">
+        @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+        {
+          <button id="popup-save-button" data-bind="click: saveItem" class="k-button"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Save</button>
+        }
+        <a href="\\#" id="popup-cancel-button" data-bind="click: cancel" class="k-button btn-transparent">@(!User.IsInRole(GlobalConstants.ReadOnlyRole) ? "Cancel" : "Close")</a>
+      </div>
+    </div>
+  </div>
+</script>
+<script src="~/Scripts/app/admin/settings.js"></script>

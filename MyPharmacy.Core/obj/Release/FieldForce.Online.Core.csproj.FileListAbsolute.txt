@@ -1,0 +1,14 @@
+E:\Work\FieldForceOnline\FieldForce.Online.Core\bin\Release\FieldForce.Online.Core.dll.config
+E:\Work\FieldForceOnline\FieldForce.Online.Core\bin\Release\FieldForce.Online.Core.dll
+E:\Work\FieldForceOnline\FieldForce.Online.Core\bin\Release\FieldForce.Online.Core.pdb
+E:\Work\FieldForceOnline\FieldForce.Online.Core\bin\Release\EntityFramework.dll
+E:\Work\FieldForceOnline\FieldForce.Online.Core\bin\Release\EntityFramework.SqlServer.dll
+E:\Work\FieldForceOnline\FieldForce.Online.Core\bin\Release\Microsoft.AspNet.Identity.Core.dll
+E:\Work\FieldForceOnline\FieldForce.Online.Core\bin\Release\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\Work\FieldForceOnline\FieldForce.Online.Core\bin\Release\EntityFramework.xml
+E:\Work\FieldForceOnline\FieldForce.Online.Core\bin\Release\EntityFramework.SqlServer.xml
+E:\Work\FieldForceOnline\FieldForce.Online.Core\bin\Release\Microsoft.AspNet.Identity.Core.xml
+E:\Work\FieldForceOnline\FieldForce.Online.Core\bin\Release\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\Work\FieldForceOnline\FieldForce.Online.Core\obj\Release\FieldForce.Online.Core.csprojResolveAssemblyReference.cache
+E:\Work\FieldForceOnline\FieldForce.Online.Core\obj\Release\FieldForce.Online.Core.dll
+E:\Work\FieldForceOnline\FieldForce.Online.Core\obj\Release\FieldForce.Online.Core.pdb

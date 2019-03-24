@@ -1,0 +1,103 @@
+﻿@using FieldForce.Online.Core
+@{
+  ViewBag.Title = "Assign Allocations";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section>
+  <h1>
+    Assign @ViewBag.AllocationText
+  </h1>
+</section>
+<section class="content">
+  <div id="allocationsView" class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div id="allocationsGrid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="editorWindow"></div>
+  <input id="pageSizes" type="hidden" value="@ConfigurationManager.AppSettings["GridAvailablePageSizes"]" />
+  <input id="isReadOnly" type="hidden" value="@(User.IsInRole(GlobalConstants.ReadOnlyRole)?"true":"false")" />
+</section>
+<script type="text/x-kendo-template" id="userAllocations-template">
+  <div id="editor">
+    <div id="userAllocationForm">
+      <div class="panel panel-default">
+        <div class="panel-heading">@ViewBag.AllocationText Details</div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-3">
+              <h5>User</h5>
+            </div>
+            <div class="col-xs-7" style="margin-top: 5px;">
+              <input id="user" data-role="dropdownlist" data-auto-bind="true"
+                     data-value-primitive="true"
+                     name="user"
+                     data-text-field="UserName"
+                     style="width: 300px"
+                     data-value-field="Id"
+                     required data-required-msg="Select user"
+                     data-bind="value: selectedUserId, source: users"><span class="k-invalid-msg" data-for="user"></span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-3">
+              <h5>@ViewBag.ScenarioText</h5>
+            </div>
+            <div class="col-xs-7" style="margin-top: 5px;">
+              <input type="text" id="scenario"
+                     data-role="combobox"
+                     data-placeholder='@ViewBag.ScenarioText'
+                     data-value-primitive="true"
+                     data-text-field="Name"
+                     data-value-field="Id"
+                     name="scenario"
+                     style="width:300px"
+                     data-bind="value: selectedScenarioId, source: scenarios, events: { change: changeScenario }"><span class="k-invalid-msg" data-for="scenario"></span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-3">
+              <h5>@ViewBag.AllocationText</h5>
+            </div>
+            <div class="col-xs-7" style="margin-top: 5px;">
+              <input id="allocation" data-role="dropdownlist" data-auto-bind="true"
+                     data-value-primitive="true"
+                     name="allocation"
+                     data-text-field="Name"
+                     style="width: 300px"
+                     data-value-field="Id"
+                     required data-required-msg="Select @ViewBag.AllocationText"
+                     data-bind="value: selectedAllocationId, source: allocations"><span class="k-invalid-msg" data-for="allocation"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button id="popup-cancel-button" data-bind="click: cancel" class="k-button btn-transparent pull-right">@(!User.IsInRole(GlobalConstants.ReadOnlyRole) ? "Cancel" : "Close")</button>
+        @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+        {
+          <button id="popup-add-button" data-bind="click: addItem" class="k-button pull-right">Create</button>
+          <button id="popup-save-button" data-bind="click: saveItem" class="k-button pull-right">Submit</button>
+        }
+        <input data-role="autocomplete"
+               style="width: 300px; display:none"
+               data-unique data-unique-msg=""
+               name="unique"
+               id="unique"><span class="k-invalid-msg" data-for="unique"></span>
+      </div>
+    </div>
+  </div>
+</script>
+<script type="text/x-kendo-template" id="gridtoolbar">
+  <div class="toolbar">
+    @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+    {
+      <button id="addnewrecord" class="k-button k-button-icontext"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Assign @ViewBag.AllocationText</button>
+    }
+  </div>
+</script>
+<script src="~/Scripts/app/masterdata/userAllocations.js"></script>

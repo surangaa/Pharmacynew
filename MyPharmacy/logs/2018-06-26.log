@@ -1,0 +1,4 @@
+2018-06-26 13:18:55.8713 FATAL Unable to update database to match the current model because there are pending changes and automatic migration is disabled. Either write the pending model changes to a code-based migration or enable automatic migration. Set DbMigrationsConfiguration.AutomaticMigrationsEnabled to true to enable automatic migration.
+2018-06-26 13:18:55.9203 FATAL Unable to update database to match the current model because there are pending changes and automatic migration is disabled. Either write the pending model changes to a code-based migration or enable automatic migration. Set DbMigrationsConfiguration.AutomaticMigrationsEnabled to true to enable automatic migration.
+2018-06-26 13:20:44.2428 FATAL There is already an object named 'Actions' in the database.
+2018-06-26 13:20:44.2698 FATAL There is already an object named 'Actions' in the database.

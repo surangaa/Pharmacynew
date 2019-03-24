@@ -1,0 +1,9 @@
+2018-03-21 08:25:44.0784 FATAL A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+2018-03-21 08:25:44.0954 FATAL A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+2018-03-21 08:25:44.0954 FATAL The network path was not found
+2018-03-21 08:42:05.2109 FATAL The remote host closed the connection. The error code is 0x80070057.
+2018-03-21 08:42:05.2379 FATAL The remote host closed the connection. The error code is 0x80070057.
+2018-03-21 09:36:36.1349 FATAL Automatic migration was not applied because it would result in data loss. Set AutomaticMigrationDataLossAllowed to 'true' on your DbMigrationsConfiguration to allow application of automatic migrations even if they might cause data loss. Alternately, use Update-Database with the '-Force' option, or scaffold an explicit migration.
+2018-03-21 09:36:36.1661 FATAL Automatic migration was not applied because it would result in data loss. Set AutomaticMigrationDataLossAllowed to 'true' on your DbMigrationsConfiguration to allow application of automatic migrations even if they might cause data loss. Alternately, use Update-Database with the '-Force' option, or scaffold an explicit migration.
+2018-03-21 09:37:11.5495 FATAL There is already an object named 'Settings' in the database.
+2018-03-21 09:37:11.5651 FATAL There is already an object named 'Settings' in the database.

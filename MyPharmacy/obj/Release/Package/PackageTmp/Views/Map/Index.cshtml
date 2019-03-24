@@ -1,0 +1,47 @@
+﻿@using System.Globalization
+@using FieldForce.Online.Core
+@{
+  ViewBag.Title = "Map";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Content Header (Page header) -->
+<section>
+  <h1>
+    Map Viewer
+  </h1>
+</section>
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12" id="mapsView">
+      <div class="panel panel-default">
+        <div id="filterDetails" class="panel-collapse collapse in">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-12">
+                <label>@ViewBag.ScenarioText:&nbsp;&nbsp;</label>
+                <input id="scenarios" data-role="combobox" data-placeholder='@ViewBag.ScenarioText' style="width: 300px" data-bind="value: selectedScenario" />&nbsp;&nbsp;&nbsp;<label>@ViewBag.AllocationText:&nbsp;&nbsp;</label>
+                <select id="allocations" multiple="multiple"></select>
+                <label>Call Day 01:&nbsp;&nbsp;</label>
+                <input data-role="datepicker"
+                       data-bind="value: selectedDate, visible: isCallDayDatepickerVisible, events: { change: onDateChange }"
+                       style="width: 150px"><label data-bind="text: selectedDateText, invisible: isCallDayDatepickerVisible"></label>
+                &nbsp;&nbsp;&nbsp;<button type="button" class="k-button" onclick="zoomToMapMarkers();"><i class="fa fa-arrows-alt" aria-hidden="true"></i>&nbsp;&nbsp;Zoom</button>
+              </div>
+            </div>
+            <div class="row">
+              <div id="map-area" class="col-xs-12">
+                <div id="map-canvas" style="height: 100%; width: 100%; min-height: 500px; margin-bottom: 5px; margin-top: 5px;"></div>
+              </div>
+              <div id="grid-area">
+                <div id="calldayGrid"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <input id="isReadOnly" type="hidden" value="@User.IsInRole(GlobalConstants.ReadOnlyRole).ToString(CultureInfo.InvariantCulture)" />
+</section>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXxKl_l4ANtwgHE2VDCnoI2C46mk_9KM4"></script>
+<script src="~/Scripts/app/map/map.js"></script>

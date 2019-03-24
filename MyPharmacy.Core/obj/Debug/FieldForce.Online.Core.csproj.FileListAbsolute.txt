@@ -1,0 +1,16 @@
+E:\Work\FieldForceOnline\FieldForce.Online.Core\bin\Debug\FieldForce.Online.Core.dll.config
+E:\Work\FieldForceOnline\FieldForce.Online.Core\bin\Debug\FieldForce.Online.Core.dll
+E:\Work\FieldForceOnline\FieldForce.Online.Core\bin\Debug\FieldForce.Online.Core.pdb
+E:\Work\FieldForceOnline\FieldForce.Online.Core\bin\Debug\EntityFramework.dll
+E:\Work\FieldForceOnline\FieldForce.Online.Core\bin\Debug\EntityFramework.SqlServer.dll
+E:\Work\FieldForceOnline\FieldForce.Online.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+E:\Work\FieldForceOnline\FieldForce.Online.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\Work\FieldForceOnline\FieldForce.Online.Core\bin\Debug\EntityFramework.xml
+E:\Work\FieldForceOnline\FieldForce.Online.Core\bin\Debug\EntityFramework.SqlServer.xml
+E:\Work\FieldForceOnline\FieldForce.Online.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+E:\Work\FieldForceOnline\FieldForce.Online.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\Work\FieldForceOnline\FieldForce.Online.Core\obj\Debug\FieldForce.Online.Core.dll
+E:\Work\FieldForceOnline\FieldForce.Online.Core\obj\Debug\FieldForce.Online.Core.pdb
+E:\Work\FieldForceOnline\FieldForce.Online.Core\obj\Debug\FieldForce.Online.Core.csprojAssemblyReference.cache
+E:\Work\FieldForceOnline\FieldForce.Online.Core\obj\Debug\FieldForce.Online.Core.csproj.CoreCompileInputs.cache
+E:\Work\FieldForceOnline\FieldForce.Online.Core\obj\Debug\FieldForce.Online.Core.csproj.CopyComplete

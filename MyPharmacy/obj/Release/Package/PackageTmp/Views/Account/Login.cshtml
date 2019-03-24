@@ -1,0 +1,52 @@
+﻿@using FieldForce.Online.Web.Infrastructure
+@{
+  ViewBag.Title = "Login";
+}
+<!-- MAIN CONTENT -->
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-offset-3 col-md-6 col-lg-offset-4 col-lg-4">
+      <div id="login" class="well no-padding">
+        <form class="smart-form client-form" id="login-form" novalidate="novalidate">
+          <header>
+            Login
+          </header>
+          <fieldset>
+            <img src="~/img/logo.png" class="img-responsive loginlogo" alt="FieldForceOnline" style="margin: 0 auto;">
+            <section>
+              <label class="label">Username</label>
+              <label class="input">
+                <i class="icon-append fa fa-user"></i>
+                <input type="text" name="username" id="username" placeholder="Enter Username" class="form-control"
+                       required data-required-msg="Username is required" />
+              </label>
+            </section>
+            <section>
+              <label class="label">Password</label>
+              <label class="input">
+                <i class="icon-append fa fa-lock"></i>
+                <input type="password" name="password"
+                       id="password" placeholder="Enter Password" class="form-control"
+                       required data-required-msg="Password is required">
+              </label>
+            </section>
+            <section id="message-area" class="form-group alert alert-danger alert-dismissable" style="display: none; margin-left:0;">
+              <span data-bind="text: message"></span>
+            </section>
+            <section>
+              <a href="@Url.Action(WebConstants.RecoverPasswordAction, WebConstants.AccountControllerName)">Forgot password?</a>
+            </section>
+          </fieldset>
+          <footer>
+            <button id="login-btn" class="btn btn-primary ladda-button" data-style="expand-left" data-size="s" data-bind="click: login" autofocus>
+              <span class="glyphicon glyphicon-log-in"></span>
+              <span class="ladda-label">&nbsp;&nbsp;Login</span>
+              <div class="ladda-progress" style="width: 104px;"></div>
+            </button>&nbsp;&nbsp;
+          </footer>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="~/Scripts/app/account/login.js"></script>

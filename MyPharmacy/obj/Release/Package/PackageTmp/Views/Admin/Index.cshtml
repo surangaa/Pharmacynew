@@ -1,0 +1,247 @@
+﻿@using FieldForce.Online.Core
+@{
+  ViewBag.Title = "Users";
+}
+<section>
+  <h1>
+    Users
+  </h1>
+</section>
+<section class="content">
+  <div id="manageusers" class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div id="usergrid"></div>
+          <div id="editorwindow"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="text/x-kendo-template" id="editor-template">
+  <div id="editor">
+    <div id="editorform">
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default" id="generalPanel">
+          <div class="panel-heading">
+            <h5 class="panel-title">
+              <a data-toggle="collapse" data-target="\#general"
+                 href="\#general">
+                General
+              </a>
+            </h5>
+          </div>
+          <div id="general" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-xs-3">
+                  <h5>User Name:</h5>
+                </div>
+                <div class="col-xs-7">
+                  @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+                  {
+                    <input type="text" class="k-textbox" name="name" id="name" data-bind="value:name" data-url="/api/user/check/" required data-required-msg="Enter user name" data-available data-available-msg="Entered user name is not available" />
+                    <span class="k-invalid-msg" data-for="name"></span>
+                  }
+                  else
+                  {
+                    <h5 data-bind="text: name"></h5>
+                  }
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-3">
+                  <h5>Full Name:</h5>
+                </div>
+                <div class="col-xs-7">
+                  @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+                  {
+                    <input type="text" class="k-textbox" name="fullName" id="fullName" data-bind="value:fullName" />
+                    <span class="k-invalid-msg" data-for="fullName"></span>
+                  }
+                  else
+                  {
+                    <h5 data-bind="text: fullName"></h5>
+                  }
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-3">
+                  <h5>Email:</h5>
+                </div>
+                <div class="col-xs-7">
+                  @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+                  {
+                    <input type="email" class="k-textbox" name="email" id="email" data-bind="value:email" data-url="/api/user/checkEmail/" data-email-msg="Email format is not valid" data-available data-available-msg="Entered email is not available" />
+                    <span class="k-invalid-msg" data-for="email"></span>
+                  }
+                  else
+                  {
+                    <h5 data-bind="text: email"></h5>
+                  }
+                </div>
+              </div>
+              @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+              {
+                <div class="row">
+                  <div class="col-xs-3">
+                    <h5>
+                      Password:
+                    </h5>
+                  </div>
+                  <div class="col-xs-7">
+                    <input type="password" class="k-textbox" name="password" id="password" data-bind="value:password" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-3">
+                    <h5>
+                      Confirm Password:
+                    </h5>
+                  </div>
+                  <div class="col-xs-7">
+                    <input type="password" class="k-textbox" name="confirmpassword" id="confirmpassword" data-bind="value:confirmpassword" />
+                  </div>
+                </div>
+              }
+              <div class="row" data-bind="visible:isEditMode">
+                <div class="col-xs-3">
+                  <h5>Status:</h5>
+                </div>
+                <div class="col-xs-7">
+                  @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+                  {
+                    <input type="text" data-role="dropdownlist" data-auto-bind="false" data-text-field="text" data-value-field="value" data-bind="value:isActive, source: statuses">
+                  }
+                  else
+                  {
+                    <span style="position:absolute;font-size: 12px;margin-top: 10px;" data-bind="text: status, attr: { class: statusClass}"></span>
+                  }
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-3">
+                  <h5>Supervisor:</h5>
+                </div>
+                <div class="col-xs-7">
+                  @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+                  {
+                    <input type="text" data-role="dropdownlist" data-auto-bind="false" data-text-field="UserName" data-value-field="Id" data-bind="value:parentId, source: users">
+                  }
+                  else
+                  {
+                    <h5 data-bind="text: parentName"></h5>
+                  }
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-3">
+                  <h5>Suburb :</h5>
+                </div>
+                <div class="col-xs-7">
+                  @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+                  {
+                    <input type="text" class="k-textbox" name="suburb" id="suburb" data-bind="value:suburb" />
+                    <span class="k-invalid-msg" data-for="suburb"></span>
+                  }
+                  else
+                  {
+                    <h5 data-bind="text: suburb"></h5>
+                  }
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-3">
+                  <h5>Longitude:</h5>
+                </div>
+                <div class="col-xs-7">
+                  @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+                  {
+                    <input type="number" class="k-textbox" name="suburbX" id="email" data-bind="value:suburbX" />
+                    <span class="k-invalid-msg" data-for="suburbX"></span>
+                  }
+                  else
+                  {
+                    <h5 data-bind="text: suburbY"></h5>
+                  }
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-3">
+                  <h5>Latitude:</h5>
+                </div>
+                <div class="col-xs-7">
+                  @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+                  {
+                    <input type="number" class="k-textbox" name="suburbY" id="suburbY" data-bind="value:suburbY" />
+                    <span class="k-invalid-msg" data-for="suburbY"></span>
+                  }
+                  else
+                  {
+                    <h5 data-bind="text: suburbY"></h5>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="groupsPanel">
+          <div class="panel-heading">
+            <h5 class="panel-title">
+              <a data-toggle="collapse" data-target="\#groups"
+                 href="\#groups">
+                Groups
+              </a>
+            </h5>
+          </div>
+          <div id="groups" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-xs-3">
+                  <h5>
+                    User Groups:
+                  </h5>
+                </div>
+                <div class="col-xs-7">
+                  @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+                  {
+                    <select data-role="multiselect"
+                            data-placeholder="Type a User Group"
+                            data-value-primitive="true"
+                            data-text-field="Name"
+                            data-value-field="Name"
+                            class="textcontent"
+                            data-bind="value: selectedGroups, source: groups"></select>
+                  }
+                  else
+                  {
+                    <h5 data-bind="text: userGroups"></h5>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="alert alert-danger alert-block" data-bind="visible: isErrorVisible, text:errorMessage"></div>
+      <div class="k-state-default">
+        @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+        {
+          <button id="popup-save-button" data-bind="click: saveItem" class="k-button"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Save</button>
+        }
+        <a href="\\#" id="popup-cancel-button" data-bind="click: cancel" class="k-button btn-transparent">@(!User.IsInRole(GlobalConstants.ReadOnlyRole) ? "Cancel" : "Close")</a>
+      </div>
+    </div>
+  </div>
+</script>
+<script type="text/x-kendo-template" id="gridtoolbar">
+  <div class="toolbar">
+    @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+    {
+      <button class="k-button k-button-icontext" data-bind="click:createUser"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Create New User</button>
+    }
+  </div>
+</script>
+<script src="~/Scripts/app/admin/admin.js"></script>

@@ -1,0 +1,38 @@
+﻿@{
+  ViewBag.Title = "Import";
+}
+<section>
+  <h1>
+    Import
+  </h1>
+</section>
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12" id="importView">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h5 class="panel-title">
+                Import Files
+              </h5>
+            </div>
+            <div class="panel-collapse collapse in">
+              <div class="panel-body">
+                <div id="fileImport" class="row-detail">
+                  <input name="files" id="import" type="file" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div id="summaryWindow">
+  <div id="summaryContent">
+    <ul></ul>
+  </div>
+</div>
+<script src="~/Scripts/app/import/import.js"></script>

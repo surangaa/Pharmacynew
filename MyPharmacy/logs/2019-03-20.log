@@ -1,0 +1,6 @@
+2019-03-20 21:04:11.5488 FATAL The controller for path '/Calendar' was not found or does not implement IController.
+2019-03-20 21:04:12.1306 FATAL The controller for path '/Calendar' was not found or does not implement IController.
+2019-03-20 21:04:47.7960 FATAL The controller for path '/Workload' was not found or does not implement IController.
+2019-03-20 21:04:48.0998 FATAL The controller for path '/Workload' was not found or does not implement IController.
+2019-03-20 21:06:33.9033 FATAL A public action method 'MapPoints' was not found on controller 'MyPharmacy.Web.Controllers.MasterDataController'.
+2019-03-20 21:06:34.1881 FATAL A public action method 'MapPoints' was not found on controller 'MyPharmacy.Web.Controllers.MasterDataController'.

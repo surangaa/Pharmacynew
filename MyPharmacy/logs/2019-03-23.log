@@ -1,0 +1,64 @@
+2019-03-23 13:21:25.5330 FATAL The controller for path '/Calendar' was not found or does not implement IController.
+2019-03-23 13:21:25.5709 FATAL The controller for path '/Calendar' was not found or does not implement IController.
+2019-03-23 15:19:23.3049 FATAL Encountered end tag "li" with no matching start tag.  Are your start/end tags properly balanced?
+
+2019-03-23 15:19:23.3328 FATAL Encountered end tag "li" with no matching start tag.  Are your start/end tags properly balanced?
+
+2019-03-23 15:19:23.3328 FATAL Encountered end tag "li" with no matching start tag.  Are your start/end tags properly balanced?
+
+2019-03-23 15:19:25.7489 FATAL Encountered end tag "li" with no matching start tag.  Are your start/end tags properly balanced?
+
+2019-03-23 15:19:25.7648 FATAL Encountered end tag "li" with no matching start tag.  Are your start/end tags properly balanced?
+
+2019-03-23 15:19:25.7648 FATAL Encountered end tag "li" with no matching start tag.  Are your start/end tags properly balanced?
+
+2019-03-23 15:19:36.1085 FATAL Encountered end tag "li" with no matching start tag.  Are your start/end tags properly balanced?
+
+2019-03-23 15:19:36.1414 FATAL Encountered end tag "li" with no matching start tag.  Are your start/end tags properly balanced?
+
+2019-03-23 15:19:36.1414 FATAL Encountered end tag "li" with no matching start tag.  Are your start/end tags properly balanced?
+
+2019-03-23 15:23:01.4588 FATAL The controller for path '/undefined' was not found or does not implement IController.
+2019-03-23 15:23:01.4977 FATAL The controller for path '/undefined' was not found or does not implement IController.
+2019-03-23 15:27:29.3279 FATAL The if block is missing a closing "}" character.  Make sure you have a matching "}" character for all the "{" characters within this block, and that none of the "}" characters are being interpreted as markup.
+
+2019-03-23 15:27:29.4127 FATAL The if block is missing a closing "}" character.  Make sure you have a matching "}" character for all the "{" characters within this block, and that none of the "}" characters are being interpreted as markup.
+
+2019-03-23 15:27:29.4127 FATAL The if block is missing a closing "}" character.  Make sure you have a matching "}" character for all the "{" characters within this block, and that none of the "}" characters are being interpreted as markup.
+
+2019-03-23 15:27:31.6020 FATAL The if block is missing a closing "}" character.  Make sure you have a matching "}" character for all the "{" characters within this block, and that none of the "}" characters are being interpreted as markup.
+
+2019-03-23 15:27:31.6320 FATAL The if block is missing a closing "}" character.  Make sure you have a matching "}" character for all the "{" characters within this block, and that none of the "}" characters are being interpreted as markup.
+
+2019-03-23 15:27:31.6320 FATAL The if block is missing a closing "}" character.  Make sure you have a matching "}" character for all the "{" characters within this block, and that none of the "}" characters are being interpreted as markup.
+
+2019-03-23 15:27:33.2686 FATAL The if block is missing a closing "}" character.  Make sure you have a matching "}" character for all the "{" characters within this block, and that none of the "}" characters are being interpreted as markup.
+
+2019-03-23 15:27:33.2875 FATAL The if block is missing a closing "}" character.  Make sure you have a matching "}" character for all the "{" characters within this block, and that none of the "}" characters are being interpreted as markup.
+
+2019-03-23 15:27:33.2875 FATAL The if block is missing a closing "}" character.  Make sure you have a matching "}" character for all the "{" characters within this block, and that none of the "}" characters are being interpreted as markup.
+
+2019-03-23 16:24:20.7196 FATAL The controller for path '/Calendar' was not found or does not implement IController.
+2019-03-23 16:24:20.7575 FATAL The controller for path '/Calendar' was not found or does not implement IController.
+2019-03-23 16:24:29.7318 FATAL A public action method 'MapPoints' was not found on controller 'MyPharmacy.Web.Controllers.MasterDataController'.
+2019-03-23 16:24:29.7318 FATAL A public action method 'MapPoints' was not found on controller 'MyPharmacy.Web.Controllers.MasterDataController'.
+2019-03-23 16:25:01.6203 FATAL A public action method 'WorkloadTemplates' was not found on controller 'MyPharmacy.Web.Controllers.MasterDataController'.
+2019-03-23 16:25:01.6203 FATAL A public action method 'WorkloadTemplates' was not found on controller 'MyPharmacy.Web.Controllers.MasterDataController'.
+2019-03-23 16:29:08.4369 FATAL The controller for path '/Import' was not found or does not implement IController.
+2019-03-23 16:29:08.4718 FATAL The controller for path '/Import' was not found or does not implement IController.
+2019-03-23 16:31:25.4439 FATAL The if block is missing a closing "}" character.  Make sure you have a matching "}" character for all the "{" characters within this block, and that none of the "}" characters are being interpreted as markup.
+
+2019-03-23 16:31:25.4728 FATAL The if block is missing a closing "}" character.  Make sure you have a matching "}" character for all the "{" characters within this block, and that none of the "}" characters are being interpreted as markup.
+
+2019-03-23 16:31:25.4728 FATAL The if block is missing a closing "}" character.  Make sure you have a matching "}" character for all the "{" characters within this block, and that none of the "}" characters are being interpreted as markup.
+
+2019-03-23 16:31:27.3887 FATAL The if block is missing a closing "}" character.  Make sure you have a matching "}" character for all the "{" characters within this block, and that none of the "}" characters are being interpreted as markup.
+
+2019-03-23 16:31:27.5094 FATAL The if block is missing a closing "}" character.  Make sure you have a matching "}" character for all the "{" characters within this block, and that none of the "}" characters are being interpreted as markup.
+
+2019-03-23 16:31:27.5094 FATAL The if block is missing a closing "}" character.  Make sure you have a matching "}" character for all the "{" characters within this block, and that none of the "}" characters are being interpreted as markup.
+
+2019-03-23 17:02:21.1914 FATAL A public action method 'MapPoints' was not found on controller 'MyPharmacy.Web.Controllers.MasterDataController'.
+2019-03-23 17:02:21.1914 FATAL A public action method 'MapPoints' was not found on controller 'MyPharmacy.Web.Controllers.MasterDataController'.
+2019-03-23 17:02:26.0515 FATAL The controller for path '/Calendar' was not found or does not implement IController.
+2019-03-23 17:02:26.0515 FATAL The controller for path '/Calendar' was not found or does not implement IController.

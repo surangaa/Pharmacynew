@@ -1,0 +1,229 @@
+﻿@using FieldForce.Online.Core
+@{
+  ViewBag.Title = ViewBag.MapPointPageTitle;
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section>
+  <h1>
+    @ViewBag.MapPointPageTitle
+  </h1>
+</section>
+<section class="content">
+  <div id="managemappoints" class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div id="mapPointGrid"></div>
+          <div id="editorwindow"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <input id="isReadOnly" type="hidden" value="@(User.IsInRole(GlobalConstants.ReadOnlyRole)?"true":"false")" />
+</section>
+<script type="text/x-kendo-template" id="editor-template">
+  <div id="editor">
+    <div id="editorform" class="master-data">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-3">
+              <h5 data-bind="text: codeText"></h5>
+            </div>
+            <div class="col-xs-7">
+              @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+              {
+                <input type="text" name="code" id="code" maxlength="30" class="k-textbox" placeholder="Map point code" data-bind="value:code"
+                       data-available data-available-msg="Entered map point code is not available"
+                       required data-required-msg="Enter map point code" />
+              }
+              else
+              {
+                <h5 data-bind="text:code"></h5>
+              }
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-3">
+              <h5 data-bind="text: nameText"></h5>
+            </div>
+            <div class="col-xs-7">
+              @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+              {
+                <input type="text" name="name" id="name" maxlength="100" class="k-textbox" placeholder="Map point name" data-bind="value:name" required data-required-msg="Enter map point name" />
+              }
+              else
+              {
+                <h5 data-bind="text:name"></h5>
+              }
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-3">
+              <h5 data-bind="text: addressText"></h5>
+            </div>
+            <div class="col-xs-7">
+              @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+              {
+                <input type="text" name="address" id="address" maxlength="100" class="k-textbox" placeholder="Map point address" data-bind="value:address" />
+              }
+              else
+              {
+                <h5 data-bind="text:address"></h5>
+              }
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-3">
+              <h5 data-bind="text: isActiveText"></h5>
+            </div>
+            <div class="col-xs-7">
+              <input id="status" type="text" data-role="dropdownlist" data-auto-bind="false" data-text-field="text" data-value-field="value" data-bind="value:isActive, source: statuses">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-3">
+              <h5 data-bind="text: xText"></h5>
+            </div>
+            <div class="col-xs-7">
+              @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+              {
+                <input type="text" name="x" id="x" maxlength="100" class="k-textbox" placeholder="Map point x" data-bind="value:x" />
+              }
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-3">
+              <h5 data-bind="text: yText"></h5>
+            </div>
+            <div class="col-xs-7">
+              @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+              {
+                <input type="text" name="y" id="y" maxlength="100" class="k-textbox" placeholder="Map point y" data-bind="value:y" />
+              }
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-3">
+              <h5 data-bind="text: mapPointTypesText"></h5>
+            </div>
+            <div class="col-xs-7">
+              <select id="mapPointType" data-role="dropdownlist"
+                      data-value-primitive="true"
+                      data-text-field="Name"
+                      data-value-field="MapPointTypeId"
+                      class="textcontent"
+                      data-bind="value: selectedMapPointType, source: mapPointTypes"></select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default" id="generalPanel">
+        <div class="panel-heading">
+          <h5 class="panel-title">
+            <a data-toggle="collapse" data-target="\#details"
+               href="\#details">
+              Details
+            </a>
+          </h5>
+        </div>
+        <div id="details" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-3">
+                <h5 data-bind="text: detail1Text"></h5>
+              </div>
+              <div class="col-xs-7">
+                @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+                {
+                  <input type="text" name="detail1" id="detail1" maxlength="50" class="k-textbox" style="margin-top:5px" placeholder="Map point Detail1" data-bind="value:detail1" />
+                }
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-3">
+                <h5 data-bind="text: detail2Text"></h5>
+              </div>
+              <div class="col-xs-7">
+                @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+                {
+                  <input type="text" name="detail2" id="detail2" maxlength="50" class="k-textbox" style="margin-top:5px" placeholder="Map point Detail2" data-bind="value:detail2" />
+                }
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-3">
+                <h5 data-bind="text: detail3Text"></h5>
+              </div>
+              <div class="col-xs-7">
+                @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+                {
+                  <input type="text" name="detail3" id="detail3" maxlength="50" class="k-textbox" style="margin-top:5px" placeholder="Map point Detail3" data-bind="value:detail3" />
+                }
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-3">
+                <h5 data-bind="text: detail4Text"></h5>
+              </div>
+              <div class="col-xs-7">
+                @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+                {
+                  <input type="text" name="detail4" id="detail4" maxlength="50" class="k-textbox" style="margin-top:5px" placeholder="Map point Detail4" data-bind="value:detail4" />
+                }
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-3">
+                <h5 data-bind="text: detail5Text"></h5>
+              </div>
+              <div class="col-xs-7">
+                @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+                {
+                  <input type="text" name="detail5" id="detail5" maxlength="50" class="k-textbox" style="margin-top:5px" placeholder="Map point Detail5" data-bind="value:detail5" />
+                }
+              </div>
+            </div>
+            <div class="row">
+              <table>
+                <tr>
+                  <td class="col-xs-3"></td>
+                  <td class="col-xs-1"><h5 data-bind="text: allowCallMonText"></h5></td>
+                  <td class="col-xs-1"><h5 data-bind="text: allowCallTueText"></h5></td>
+                  <td class="col-xs-1"><h5 data-bind="text: allowCallWedText"></h5></td>
+                  <td class="col-xs-1"><h5 data-bind="text: allowCallThuText"></h5></td>
+                  <td class="col-xs-1"><h5 data-bind="text: allowCallFriText"></h5></td>
+                </tr>
+                <tr>
+                  <td class="col-xs-3"><h5 data-bind="text: AllowCallsOnText"></h5></td>
+                  <td class="col-xs-1"><input type="checkbox" data-bind="checked: allowCallMon" @(User.IsInRole(GlobalConstants.ReadOnlyRole) ? "disabled" : "") /></td>
+                  <td class="col-xs-1"><input type="checkbox" data-bind="checked: allowCallTue" @(User.IsInRole(GlobalConstants.ReadOnlyRole) ? "disabled" : "") /></td>
+                  <td class="col-xs-1"><input type="checkbox" data-bind="checked: allowCallWed" @(User.IsInRole(GlobalConstants.ReadOnlyRole) ? "disabled" : "") /></td>
+                  <td class="col-xs-1"><input type="checkbox" data-bind="checked: allowCallThu" @(User.IsInRole(GlobalConstants.ReadOnlyRole) ? "disabled" : "") /></td>
+                  <td class="col-xs-1"><input type="checkbox" data-bind="checked: allowCallFri" @(User.IsInRole(GlobalConstants.ReadOnlyRole) ? "disabled" : "") /></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button id="popup-cancel-button" data-bind="click: cancel" class="k-button btn-transparent pull-right">@(!User.IsInRole(GlobalConstants.ReadOnlyRole) ? "Cancel" : "Close")</button>
+        @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+        {
+          <button id="popup-add-button" data-bind="click: addItem" class="k-button pull-right">Create</button>
+  <button id="popup-save-button" data-bind="click: saveItem" class="k-button pull-right">Submit</button>
+        }
+      </div>
+    </div>
+  </div>
+</script>
+<script type="text/x-kendo-template" id="gridtoolbar">
+  <div class="toolbar">
+    @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+    {
+      <button id="addnewrecord" class="k-button k-button-icontext"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Create Map point</button>
+    }
+  </div>
+</script>
+<script src="~/Scripts/app/masterdata/mapPoints.js"></script>

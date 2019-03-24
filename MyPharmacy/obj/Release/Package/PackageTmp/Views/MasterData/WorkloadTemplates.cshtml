@@ -1,0 +1,96 @@
+﻿@using FieldForce.Online.Core
+@{
+  ViewBag.Title = "Workload Templates";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section>
+  <h1>
+    Workload Templates
+  </h1>
+</section>
+<section class="content">
+  <div id="workloadTemplatesView" class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div id="workloadTemplatesGrid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="editorWindow"></div>
+  <input id="pageSizes" type="hidden" value="@ConfigurationManager.AppSettings["GridAvailablePageSizes"]" />
+  <input id="isReadOnly" type="hidden" value="@(User.IsInRole(GlobalConstants.ReadOnlyRole)?"true":"false")" />
+</section>
+<script type="text/x-kendo-template" id="workloadTemplate-template">
+  <div id="editor">
+    <div id="workloadTemplateForm">
+      <div class="panel panel-default">
+        <div class="panel-heading">Workload Template Details</div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-3">
+              <h5>Code</h5>
+            </div>
+            <div class="col-xs-7" style="margin-top: 5px;">
+              <input type="text" style="width:300px" name="code" id="code" maxlength="30" class="k-textbox" placeholder="Code" data-bind="value:code"
+                     data-available data-available-msg="Entered code is not available"
+                     required data-required-msg="Enter code" /><span class="k-invalid-msg" data-for="code"></span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-3">
+              <h5>Available Minutes</h5>
+            </div>
+            <div class="col-xs-7" style="margin-top: 5px;">
+              <input type="number" style="width:300px" name="availableMinutes" class="k-textbox" placeholder="Available Minutes" data-bind="value:availableMinutes" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-3">
+              <h5>Ignored Minutes Start</h5>
+            </div>
+            <div class="col-xs-7" style="margin-top: 5px;">
+              <input type="number" style="width:300px" name="ignoredMinutesStart" class="k-textbox" placeholder="Ignored Minutes Start" data-bind="value:ignoredMinutesStart" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-3">
+              <h5>Ignored Minutes End</h5>
+            </div>
+            <div class="col-xs-7" style="margin-top: 5px;">
+              <input type="number" style="width:300px" name="ignoredMinutesEnd" class="k-textbox" placeholder="Ignored Minutes End" data-bind="value:ignoredMinutesEnd" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-3">
+              <h5>Ignored Km Start</h5>
+            </div>
+            <div class="col-xs-7" style="margin-top: 5px;">
+              <input type="number" style="width:300px" name="ignoredKmStart" class="k-textbox" placeholder="Ignored Km Start" data-bind="value:ignoredKmStart" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-3">
+              <h5>Ignored Km End</h5>
+            </div>
+            <div class="col-xs-7" style="margin-top: 5px;">
+              <input type="number" style="width:300px" name="ignoredKmEnd" class="k-textbox" placeholder="Ignored Km End" data-bind="value:ignoredKmEnd" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button id="popup-cancel-button" data-bind="click: cancel" class="k-button btn-transparent pull-right">Cancel</button>
+        <button id="popup-add-button" data-bind="click: addItem" class="k-button pull-right">Create</button>
+        <button id="popup-save-button" data-bind="click: saveItem" class="k-button pull-right">Submit</button>
+      </div>
+    </div>
+  </div>
+</script>
+<script type="text/x-kendo-template" id="gridtoolbar">
+  <div class="toolbar">
+    <button id="addnewrecord" class="k-button k-button-icontext"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Add Workload Templates</button>
+  </div>
+</script>
+<script src="~/Scripts/app/masterdata/workloadTemplates.js"></script>

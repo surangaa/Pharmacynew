@@ -1,0 +1,818 @@
+﻿@using System.Globalization
+@using FieldForce.Online.Core
+@{
+  Layout = "~/Views/Shared/_Layout.cshtml";
+  ViewBag.Title = "Calender";
+}
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div id="schedulerView">
+      <div class="col-xs-12">
+        <p>
+          <div class="row-detail">
+            @if (User.IsInRole(GlobalConstants.AdminRole) && (!User.IsInRole(GlobalConstants.ReadOnlyRole)))
+            {
+              <button type="button" class="k-button" data-bind="click: createScenario"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;&nbsp;Create @ViewBag.ScenarioText</button>
+            }
+            <button type="button" class="k-button" data-bind="click: openScenarios"><i class="fa fa-folder-open" aria-hidden="true"></i>&nbsp;&nbsp;Open @ViewBag.ScenarioText</button>
+            @if (User.IsInRole(GlobalConstants.AdminRole) && (!User.IsInRole(GlobalConstants.ReadOnlyRole)))
+            {
+              <button type="button" class="k-button" style="display: none" data-bind="click: copyScenario, visible: isCopyVisible"><i class="fa fa-files-o" aria-hidden="true"></i>&nbsp;&nbsp;Copy @ViewBag.ScenarioText</button>
+            }
+            @if (User.IsInRole(GlobalConstants.AdminRole) && (!User.IsInRole(GlobalConstants.ReadOnlyRole)))
+            {
+              <button type="button" class="k-button" style="display: none" data-bind="click: editScenario, visible: isEditVisible"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;&nbsp;Edit @ViewBag.ScenarioText</button>
+            }
+            @if (User.IsInRole(GlobalConstants.AdminRole) && (!User.IsInRole(GlobalConstants.ReadOnlyRole)))
+            {
+              <button type="button" class="k-button" style="display: none" data-bind="click: deleteScenario, visible: isDeleteVisible"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;&nbsp;Delete @ViewBag.ScenarioText</button>
+            }
+            @if (User.IsInRole(GlobalConstants.AdminRole) && (!User.IsInRole(GlobalConstants.ReadOnlyRole)))
+            {
+              <button type="button" class="k-button" style="display: none" data-bind="click: lockScenario, visible: isLockVisible"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp;&nbsp;Lock @ViewBag.ScenarioText</button>
+              <button type="button" class="k-button" style="display: none" data-bind="click: unlockScenario, visible: isUnlockVisible"><i class="fa fa-unlock" aria-hidden="true"></i>&nbsp;&nbsp;Unlock @ViewBag.ScenarioText</button>
+            }
+            @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+            {
+              <button type="button" class="k-button" style="display: none" data-bind="click: swapCallDays, visible: isSwapVisible"><i class="fa fa-exchange" aria-hidden="true"></i>&nbsp;&nbsp;Swap Call Days</button>
+            }
+          </div>
+        </p>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div id="tabStrip">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="editorWindow"></div>
+  <input id="isAdmin" type="hidden" value="@User.IsInRole(GlobalConstants.AdminRole).ToString(CultureInfo.InvariantCulture)">
+  <input id="isReviewActions" type="hidden" value="@User.IsInRole(GlobalConstants.ReviewActionsRole).ToString(CultureInfo.InvariantCulture)">
+  <input id="isReadOnly" type="hidden" value="@User.IsInRole(GlobalConstants.ReadOnlyRole).ToString(CultureInfo.InvariantCulture)" />
+</section>
+<script id="event-template" type="text/x-kendo-template">
+  <div title="#: tooltip #">
+    <div class="k-event-template" data-id="#: id #" data-key="#: key #" data-1="#: AllowCallMon #" data-2="#: AllowCallTue #" data-3="#: AllowCallWed #" data-4="#: AllowCallThu #" data-0="#: AllowCallFri #" data-contractid="#: ContractId #" data-callday="#: CallDay #" data-hasrelatedvisits="#: hasRelatedVisits #" style="color:black;">
+      #if(title == ""){#
+      #}else if(hasPendingActions){#
+      <span><a href="\#" class="actionTooltip" title="#: PendingActions #"><i class="fa fa-fw fa-star" aria-hidden="true"></i></a> [#: mappointCode #] <b>#: mappointName #</b> (#: frequency #) #: visitTime #</span>
+      #}else{#
+      <span>[#: mappointCode #] <b>#: mappointName #</b> (#: frequency #) #: visitTime #</span>
+      #}#
+    </div>
+  </div>
+</script>
+<script type="text/x-kendo-template" id="contract-template">
+  <div id="contractForm">
+    <div class="panel panel-default">
+      <div class="panel-heading">Contract Details</div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>Contract ID</h5>
+          </div>
+          <div class="col-xs-7">
+            <h5 data-bind="text: contractId"></h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>@ViewBag.AllocationText</h5>
+          </div>
+          @if (User.IsInRole(GlobalConstants.AdminRole))
+          {
+            <div class="col-xs-7" style="margin-top: 5px;">
+              <input id="allocationDropDown" data-role="dropdownlist"
+                     data-value-primitive="true"
+                     data-text-field="Name"
+                     data-value-field="AllocationId"
+                     data-bind="value: allocationId, source: allocations">
+            </div>
+          }
+          else
+          {
+            <div class="col-xs-7">
+              <h5 data-bind="text: allocation"></h5>
+            </div>
+          }
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>@ViewBag.MapPointName</h5>
+          </div>
+          <div class="col-xs-7">
+            <h5 data-bind="text: mappoint"></h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>Frequency</h5>
+          </div>
+          <div class="col-xs-7">
+            <div style="margin-top: 5px;" data-bind="visible: isEditable">
+              @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+              {
+                <input data-role="dropdownlist"
+                       data-value-primitive="true"
+                       data-text-field="text"
+                       style="margin-top: 5px;"
+                       data-value-field="frequency"
+                       data-bind="value: frequency,
+                                  source: frequencies,
+                                  events: {
+                                            change: onFrequencyChange
+                                          }">
+              }
+              else
+              {
+                <h5 data-bind="text: frequency"></h5>
+              }
+            </div>
+            <div data-bind="visible: isReadOnly">
+              <h5 data-bind="text: frequency"></h5>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>Visit Time</h5>
+          </div>
+          <div class="col-xs-7" style="margin-top: 5px;" data-bind="visible: isEditable">
+            @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+            {
+              <input data-role="numerictextbox"
+                     data-format="n0"
+                     data-min="0"
+                     data-max="400"
+                     data-step="5"
+                     data-bind="value: visitTime, visible: isVisitTimeTextboxVisible">
+              <input data-role="dropdownlist"
+                     data-value-primitive="true"
+                     data-text-field="text"
+                     data-value-field="value"
+                     data-bind="value: vTime, source: visitTimes, visible: isVisitTimeDropdownVisible">
+            }
+            else
+            {
+              <h5 data-bind="text: visitTime"></h5>
+            }
+          </div>
+          <div class="col-xs-7" data-bind="visible: isReadOnly">
+            <h5 data-bind="text: visitTime"></h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>Flag fall</h5>
+          </div>
+          <div class="col-xs-7">
+            <h5 data-bind="text: flagfall"></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div>
+        <a href="\\#" data-bind="click: cancel, visible: isEditable" class="k-button btn-transparent pull-right">
+          @(!User.IsInRole(GlobalConstants.ReadOnlyRole) ? "Cancel" : "Close")
+        </a>
+        <a href="\\#" data-bind="click: cancel, visible: isReadOnly" class="k-button btn-transparent pull-right">
+          Close
+        </a>
+        @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+        {
+          <a class="k-button pull-right standard-button" data-bind="click: addVisits, visible: isEditable, text: okButtonText">Add Visits</a>
+        }
+      </div>
+    </div>
+  </div>
+</script>
+<script type="text/x-kendo-template" id="visit-template">
+  <div id="visitForm">
+    <div class="panel panel-default">
+      <div class="panel-heading">Visit Details</div>
+      <div class="panel-body">
+        <div class="row" data-bind="visible: isEditable">
+          <div class="col-xs-3">
+            <h5>@ViewBag.AllocationText</h5>
+          </div>
+          <div class="col-xs-7" style="margin-top: 5px;">
+            <input id="allocationDropDown" data-role="dropdownlist"
+                   data-value-primitive="true"
+                   data-text-field="Name"
+                   data-value-field="AllocationId"
+                   data-bind="value: allocationId, source: allocations">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5 data-bind="text: mappointCodeLabel"></h5>
+          </div>
+          <div class="col-xs-7">
+            <h5 data-bind="text: mappointCode"></h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5 data-bind="text: mappointNameLabel"></h5>
+          </div>
+          <div class="col-xs-7">
+            <h5 data-bind="text: mappointName"></h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5 data-bind="text: mapPointTypeLabel"></h5>
+          </div>
+          <div class="col-xs-7">
+            <h5 data-bind="text: mappointType"></h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5 data-bind="text: detail1Label"></h5>
+          </div>
+          <div class="col-xs-7">
+            <h5 data-bind="text: detail1"></h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5 data-bind="text: detail2Label"></h5>
+          </div>
+          <div class="col-xs-7">
+            <h5 data-bind="text: detail2"></h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5 data-bind="text: detail3Label"></h5>
+          </div>
+          <div class="col-xs-7">
+            <h5 data-bind="text: detail3"></h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>Frequency</h5>
+          </div>
+          @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+          {
+            <div class="col-xs-7" style="margin-top: 5px;" data-bind="visible: isEditable">
+              <input data-role="dropdownlist"
+                     data-value-primitive="true"
+                     data-text-field="text"
+                     data-value-field="frequency"
+                     data-bind="value: frequency, source: frequencies">
+            </div>
+            <div class="col-xs-7" data-bind="visible: isReadOnly">
+              <h5 data-bind="text: frequency"></h5>
+            </div>
+          }
+          else
+          {
+            <div class="col-xs-7">
+              <h5 data-bind="text: frequency"></h5>
+            </div>
+          }
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>Visit Type</h5>
+          </div>
+          <div class="col-xs-7" style="margin-top: 5px;">
+            <input id="visitTypeDropDown" data-role="dropdownlist"
+                   data-value-primitive="true"
+                   data-text-field="Name"
+                   data-value-field="VisitTypeId"
+                   data-bind="value: visitTypeId, source: visitTypes">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>Visit Time</h5>
+          </div>
+          <div class="col-xs-7" style="margin-top: 5px;" data-bind="visible: isEditable">
+            @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+            {
+              <input data-role="numerictextbox"
+                     data-format="n0"
+                     data-min="0"
+                     data-max="400"
+                     data-step="5"
+                     data-bind="value: visitTime, visible: isVisitTimeTextboxVisible">
+              <input data-role="dropdownlist"
+                     data-value-primitive="true"
+                     data-text-field="text"
+                     data-value-field="value"
+                     data-bind="value: vTime, source: visitTimes, visible: isVisitTimeDropdownVisible">
+            }
+            else
+            {
+              <h5 data-bind="text: visitTime"></h5>
+            }
+          </div>
+          <div class="col-xs-7" data-bind="visible: isReadOnly">
+            <h5 data-bind="text: visitTime"></h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>Visit Date</h5>
+          </div>
+          <div class="col-xs-7" style="margin-top: 5px;">
+            <label data-bind="text: visitDate"></label>
+            <div style="display:none">
+              @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+              {
+                <a id="unAllocateVisit" class="k-button k-scheduler-delete standard-button" data-bind="visible: isEditable" href="\\#">Unassign</a>
+              }
+            </div>
+          </div>
+        </div>
+        <div class="row" style="display:none">
+          <div class="col-xs-3">
+            <h5>Sequence</h5>
+          </div>
+          <div class="col-xs-7">
+            <h5 data-bind="text: sequence"></h5>
+          </div>
+        </div>
+        <div class="row" style="display:none">
+          <div class="col-xs-3">
+            <h5>Arrive</h5>
+          </div>
+          <div class="col-xs-7">
+            <h5 data-bind="text: arrive"></h5>
+          </div>
+        </div>
+        <div class="row" style="display:none">
+          <div class="col-xs-3">
+            <h5>Depart</h5>
+          </div>
+          <div class="col-xs-7">
+            <h5 data-bind="text: depart"></h5>
+          </div>
+        </div>
+        <div class="row-detail" data-bind="visible: hasPendingActions">
+          <div class="alert alert-info">
+            <strong>Info!</strong> This visit is currently under review.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div>
+        @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+        {
+          <button class="k-button k-scheduler-update pull-left standard-button deleteVisit" data-bind="visible: isEditable" style="width:85px;">Delete Visit</button>
+        }
+        <a href="\\#" data-bind="visible: isEditable" class="k-button k-scheduler-cancel btn-transparent pull-right">
+          @(!User.IsInRole(GlobalConstants.ReadOnlyRole) ? "Cancel" : "Close")
+        </a>
+        <a href="\\#" data-bind="visible: isReadOnly" class="k-button k-scheduler-cancel btn-transparent pull-right">Close</a>
+        @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+        {
+          <a id="updateVisit" data-bind="visible: isEditable" class="k-button k-scheduler-update pull-right standard-button">Ok</a>
+        }
+      </div>
+    </div>
+  </div>
+</script>
+<script type="text/x-kendo-template" id="allocation-dropdown-template">
+  <span class="allocation-color" style="background-color: #= data.ColourCode #"></span>
+  <span style="font-weight:bold">#= data.Name#</span>
+</script>
+<script type="text/x-kendo-template" id="swap-visit-template">
+  <div id="swapVisitForm">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>From</h5>
+          </div>
+          <div class="col-xs-7" style="margin-top: 5px;">
+            <input data-role="dropdownlist"
+                   data-text-field="text"
+                   data-value-field="callDay"
+                   data-bind="value: selectedFromCallDay, source: fromCalDays, events: { change: onToCallDayChange}">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>To</h5>
+          </div>
+          <div class="col-xs-7" style="margin-top: 5px;">
+            <input data-role="dropdownlist"
+                   data-text-field="text"
+                   data-value-field="callDay"
+                   required data-required-msg="Select to call-day"
+                   data-bind="value: selectedToCallDay, source: toCalDays">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <a href="\\#" data-bind="click: cancel" class="k-button btn-transparent pull-right">Cancel</a>
+      @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+      {
+        <button data-bind="click: submit" class="k-button pull-right standard-button68">Submit</button>
+      }
+    </div>
+  </div>
+</script>
+<script type="text/x-kendo-template" id="copy-allocation-template">
+  <div id="copyAllocationForm">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-2">
+            <h5>@ViewBag.ScenarioText</h5>
+          </div>
+          <div class="col-xs-8" style="margin-top: 5px;">
+            <input data-role="dropdownlist" data-auto-bind="true"
+                   data-value-primitive="true"
+                   data-text-field="Name"
+                   data-value-field="ScenarioId"
+                   required data-required-msg="Select scenario" data-available data-available-msg="Same code already exists in this @ViewBag.ScenarioText"
+                   data-bind="value: selectedSenarioId, source: scenarios">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-2">
+            <h5>Frequency</h5>
+          </div>
+          <div class="col-xs-8">
+            <table>
+              <tr>
+                <td style="width: 150px; text-align: center"><h5>None</h5></td>
+                <td style="width: 150px; text-align: center"><h5>Monthly</h5></td>
+                <td style="width: 150px; text-align: center"><h5>Fortnightly</h5></td>
+                <td style="width: 150px; text-align: center"><h5>Frequency-3</h5></td>
+                <td style="width: 150px; text-align: center"><h5>Weekly</h5></td>
+                <td style="width: 150px; text-align: center"><h5>8-Weekly</h5></td>
+                <td style="width: 210px; text-align: center"><h5>12-Weekly</h5></td>
+              </tr>
+              <tr>
+                <td style="text-align: center"><input type="checkbox" data-bind="checked: freq0" /></td>
+                <td style="text-align: center"><input type="checkbox" data-bind="checked: freq1" /></td>
+                <td style="text-align: center"><input type="checkbox" data-bind="checked: freq2" /></td>
+                <td style="text-align: center"><input type="checkbox" data-bind="checked: freq3" /></td>
+                <td style="text-align: center"><input type="checkbox" data-bind="checked: freq4" /></td>
+                <td style="text-align: center"><input type="checkbox" data-bind="checked: freq033" /></td>
+                <td style="text-align: center"><input type="checkbox" data-bind="checked: freq05" /></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <a href="\\#" data-bind="click: cancel" class="k-button btn-transparent pull-right">Cancel</a>
+      @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+      {
+        <button data-bind="click: add" class="k-button pull-right standard-button68">Submit</button>
+      }
+    </div>
+  </div>
+</script>
+<script type="text/x-kendo-template" id="allocation-template">
+  <div id="allocationForm">
+    <div class="panel panel-default">
+      <div class="panel-heading">@ViewBag.AllocationText Details</div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-3">
+            <h5 data-bind="text:codeLabel"></h5>
+          </div>
+          <div class="col-xs-7" style="margin-top: 5px;">
+            <input type="text" name="code" class="k-textbox" placeholder="@ViewBag.AllocationText Code" required data-required-msg="Enter code" data-available data-available-msg="Entered code is not available" data-bind="value:code" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5 data-bind="text:nameLabel"></h5>
+          </div>
+          <div class="col-xs-7" style="margin-top: 5px;">
+            <input type="text" name="name" class="k-textbox" placeholder="@ViewBag.AllocationText Name" required data-required-msg="Enter name" data-bind="value:name" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5 data-bind="text:travelPercentLabel"></h5>
+          </div>
+          <div class="col-xs-7" style="margin-top: 5px;">
+            <div>
+              <input data-role="numerictextbox" data-min="0" data-max="100" data-format="n1" placeholder="Travel Percent" data-step="0.1" required data-required-msg=" enter travel percent" data-bind="value:travelPercent" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5 data-bind="text:colourCodeLabel"></h5>
+          </div>
+          <div class="col-xs-7" style="margin-top: 5px;">
+            <div>
+              <span data-role="colorpalette" data-palette="basic" data-bind="value: selectedColor"></span><span style="position:absolute; padding-top:5px">
+                &nbsp;&nbsp;Or&nbsp;&nbsp;<input data-role="colorpicker"
+                                                 data-bind="value: selectedColor">
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5 data-bind="text:workloadTemplateLabel"></h5>
+          </div>
+          <div class="col-xs-7" style="margin-top: 5px;">
+            <div>
+              <input data-role="dropdownlist"
+                     data-auto-bind="false"
+                     data-value-primitive="true"
+                     data-text-field="Code"
+                     data-value-field="WorkloadTemplateId"
+                     data-bind="value: selectedWorkloadTemplateId, source: workloadTemplates" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <a href="\\#" data-bind="click: cancel" class="k-button btn-transparent pull-right">Cancel</a>
+      <button data-bind="click: submit" class="k-button pull-right standard-button68">Submit</button>
+    </div>
+  </div>
+</script>
+<script id="tabTemplate" type="text/x-kendo-template">
+  <div>
+    <div class="row-detail">
+      <span class="pull-right">
+        @if (User.IsInRole(GlobalConstants.AdminRole) && (!User.IsInRole(GlobalConstants.ReadOnlyRole)))
+        {
+          <button type="button" class="k-button" data-bind="click: createAllocation, visible:isCreateVisible"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;&nbsp;Create @ViewBag.AllocationText</button>
+          <button type="button" class="k-button" data-bind="click: copyAllocation, visible: isCopyVisible"><i class="fa fa-files-o" aria-hidden="true"></i>&nbsp;&nbsp;Copy @ViewBag.AllocationText</button>
+          <button type="button" class="k-button" data-bind="click: editAllocation, visible: isEditVisible"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;&nbsp;Edit @ViewBag.AllocationText</button>
+          <button type="button" class="k-button" data-bind="click: deleteAllocation, visible: isDeleteVisible"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;&nbsp;Delete @ViewBag.AllocationText</button>
+        }
+        <button type="button" class="k-button" data-bind="click: toggleSidebar"><i class="fa fa-caret-square-o-left" aria-hidden="true"></i>&nbsp;&nbsp;Show/Hide Sidebar</button>
+      </span>
+      <ul id="exportMenu" data-role="menu" class="pull-right"
+          data-bind="events: { select: onExportSelect }, visible: isExportVisible">
+        <li>
+          Export
+          <ul>
+            <li id="exportToOutlook"><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;&nbsp;Export to Calendar</li>
+            <li id="exportToPdf"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>&nbsp;&nbsp;Export to PDF</li>
+          </ul>
+      </ul>
+      <label>@ViewBag.ScenarioText:</label>&nbsp;&nbsp;<label style="font-weight:bold" data-bind="text: currentSenarioName"></label>&nbsp;&nbsp;
+      <span data-bind="visible: isAllocationsVisible">
+        <label>@ViewBag.AllocationText:&nbsp;&nbsp;</label><input data-role="dropdownlist"
+                                                                  data-text-field="Name"
+                                                                  data-value-field="AllocationId"
+                                                                  style="width: 300px"
+                                                                  data-template="allocation-dropdown-template"
+                                                                  data-value-template="allocation-dropdown-template"
+                                                                  data-bind="value: selectedAllocation, source: allocations, events: { change: onChange, dataBound: onDataBound, select: onSelect}">&nbsp;&nbsp;
+        <label>Call Day 01:&nbsp;&nbsp;</label><input data-role="datepicker"
+                                                      data-bind="value: selectedDate, visible: isCallDayDatepickerVisible, events: { change: onDateChange }" style="width: 150px"><label data-bind="text: selectedDateText, invisible: isCallDayDatepickerVisible"></label>
+      </span>
+      <div class="row" style="margin-top:5px">
+        <div id="splitter" style="height:2140px"
+             data-role="splitter"
+             data-panes="[{ collapsible: false, resizable: false },{ collapsible: true, resizable: false, size: '250px'  }]">
+          <div id="leftPanel">
+            <div style="padding: 0px;">
+              <div data-bind="attr: { id: schedulerId }, visible: isSchedulerVisible" style="margin-top:5px;margin-left:5px;"></div>
+            </div>
+          </div>
+          <div id="rightPanel">
+            <div style="padding: 0px;">
+              <div data-role="tabstrip" style="height: 850px; overflow-y: auto">
+                <ul>
+                  <li class="k-state-active">
+                    Unassigned
+                  </li>
+                  <li>
+                    Non-Called
+                  </li>
+                </ul>
+                <div style="padding: 0px;">
+                  <div data-role="listview" class="dragoptions"
+                       data-template="listView-template"
+                       data-bind="source: unallocatedVisits, events: { dataBound: onUnallocatedVisitsDataBound }"
+                       style="margin:5px;"></div>
+                </div>
+                <div style="padding: 0px;">
+                  <div style="padding-top: 5px; padding-left: 8px;">
+                    <input class="k-textbox" style="width: 225px;" type="text" placeholder="Search..." data-bind="events: { keyup: nonCalledSearch }">
+                  </div>
+                  <div data-role="listview"
+                       data-template="nonCalled-template"
+                       data-bind="source: nonCalledList, visible: isNonCalledListVisible, events: { dataBound: onNonCalledListDatabound }"
+                       style="margin:5px;"></div>
+                  <div data-role="pager" style="margin-top: 5px;" data-bind="source: nonCalledList" data-auto-bind="false" data-button-count="4"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
+<script type="text/x-kendo-tmpl" id="listView-template">
+  #if(HasPendingActions){#
+  <div class="list-item item" data-contractid="#: ContractId #" data-1="#: AllowCallMon #" data-2="#: AllowCallTue #" data-3="#: AllowCallWed #" data-4="#: AllowCallThu #" data-0="#: AllowCallFri #" data-hasrelatedvisits="#: HasRelatedVisits #" data-canallocatemultiple="#: CanAllocateMultiple #" data-id="#: Id #"><i class="fa fa-fw fa-star" aria-hidden="true"></i>[#:MapCode#] #:MapName#</div>
+  #}else{#
+  <div class="list-item item" data-contractid="#: ContractId #" data-1="#: AllowCallMon #" data-2="#: AllowCallTue #" data-3="#: AllowCallWed #" data-4="#: AllowCallThu #" data-0="#: AllowCallFri #" data-hasrelatedvisits="#: HasRelatedVisits #" data-canallocatemultiple="#: CanAllocateMultiple #" data-id="#: Id #">[#:MapCode#] #:MapName#</div>
+  #}#
+</script>
+<script type="text/x-kendo-tmpl" id="nonCalled-template">
+  #if(HasPendingActions){#
+  <div class="contract-item item" data-contractid=" # ContractId #"><i class="fa fa-fw fa-star" aria-hidden="true"></i>[#:MapCode#] #:MapName#</div>
+  #}else{#
+  <div class="contract-item item" data-contractid=" # ContractId #">[#:MapCode#] #:MapName#</div>
+  #}#
+</script>
+<script type="text/x-kendo-template" id="scenario-template">
+  <div id="senariosForm">
+    <div class="panel panel-default">
+      <div class="panel-heading">@ViewBag.ScenarioText Details</div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-3">
+            <h5 data-bind="text:codeLabel"></h5>
+          </div>
+          <div class="col-xs-7" style="margin-top: 5px;">
+            <input type="text" name="code" class="k-textbox" placeholder="@ViewBag.ScenarioText Code" required data-required-msg="Enter code" data-bind="value:code"
+                   data-available data-available-msg="Entered code is not available" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5 data-bind="text:nameLabel"></h5>
+          </div>
+          <div class="col-xs-7" style="margin-top: 5px;">
+            <input type="text" name="name" class="k-textbox" placeholder="@ViewBag.ScenarioText Name" required data-required-msg="Enter name" data-bind="value:name" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5 data-bind="text:scenarioDateLabel"></h5>
+          </div>
+          <div class="col-xs-7" style="margin-top: 5px;">
+            <input data-role="datepicker" data-format="dd/MM/yyyy" data-bind="value: scenarioDate">
+          </div>
+        </div>
+        <div class="row" data-bind="visible: isLockVisible">
+          <div class="col-xs-3">
+            <h5 data-bind="text:lockedLabel"></h5>
+          </div>
+          <div class="col-xs-7">
+            <input class="checkbox-inline" style="margin-top: 12px;" type="checkbox" data-bind="checked: readOnly">
+          </div>
+        </div>
+        <div class="row" data-bind="visible: showFrequencySection">
+          <div class="col-xs-3">
+            <h5>Frequency</h5>
+          </div>
+          <div class="col-xs-7">
+            <table>
+              <tr>
+                <td style="width: 150px; text-align: center"><h5>None</h5></td>
+                <td style="width: 150px; text-align: center"><h5>Monthly</h5></td>
+                <td style="width: 150px; text-align: center"><h5>Fortnightly</h5></td>
+                <td style="width: 150px; text-align: center"><h5>Frequency-3</h5></td>
+                <td style="width: 150px; text-align: center"><h5>Weekly</h5></td>
+                <td style="width: 150px; text-align: center"><h5>8-Weekly</h5></td>
+                <td style="width: 210px; text-align: center"><h5>12-Weekly</h5></td>
+              </tr>
+              <tr>
+                <td style="text-align: center"><input type="checkbox" data-bind="checked: freq0" /></td>
+                <td style="text-align: center"><input type="checkbox" data-bind="checked: freq1" /></td>
+                <td style="text-align: center"><input type="checkbox" data-bind="checked: freq2" /></td>
+                <td style="text-align: center"><input type="checkbox" data-bind="checked: freq3" /></td>
+                <td style="text-align: center"><input type="checkbox" data-bind="checked: freq4" /></td>
+                <td style="text-align: center"><input type="checkbox" data-bind="checked: freq033" /></td>
+                <td style="text-align: center"><input type="checkbox" data-bind="checked: freq05" /></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <a href="\\#" data-bind="click: cancel" class="k-button btn-transparent pull-right">Cancel</a>
+      @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+      {
+        <button data-bind="click: submit" class="k-button pull-right standard-button68">Submit</button>
+      }
+    </div>
+  </div>
+</script>
+<script type="text/x-kendo-template" id="openScenarios-template">
+  <div id="openSenariosForm">
+    <div class="panel-group" id="accordion">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h5 class="panel-title">
+            Available @ViewBag.ScenarioText
+          </h5>
+        </div>
+        <div id="general" class="panel-collapse collapse in">
+          <div class="panel-body">
+            <div class="row-detail">
+              <select id="scenario"
+                      data-role="multiselect"
+                      data-placeholder='@ViewBag.ScenarioText'
+                      data-value-primitive="false"
+                      data-text-field="Name"
+                      data-value-field="ScenarioId"
+                      data-item-template="scenarioTemplate"
+                      name="scenario"
+                      style="width:370px"
+                      data-bind="value: selected, source: scenarios"></select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div>
+      <a href="\\#" data-bind="click: cancel" class="k-button btn-transparent pull-right">Cancel</a>
+      <button data-bind="click: save" class="k-button pull-right standard-button68">Submit</button>
+    </div>
+  </div>
+</script>
+<script type="text/x-kendo-tmpl" id="scenarioTemplate">
+  <div>
+    <lable>[#:Code#] #:Name#</lable>
+  </div>
+</script>
+<script type="text/x-kendo-template" id="calldayData-template">
+  <div id="calldayDataForm">
+    <div class="panel panel-default">
+      <div class="panel-heading">Callday Details</div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>Day</h5>
+          </div>
+          <div class="col-xs-7">
+            <h5 data-bind="text: dateString"></h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>Sleepout</h5>
+          </div>
+          <div class="col-xs-7" style="margin-top: 5px;">
+            <input type="text" data-role="dropdownlist" data-auto-bind="false" data-text-field="Name" data-value-field="Id" data-bind="value:selectedSleepout, source: sleepoutTypes" data-value-primitive="true">
+          </div>
+        </div>
+        <div class="row-detail" data-bind="visible: hasPendingActions">
+          <div class="alert alert-info">
+            <strong>Info!</strong> This callday is currently under review.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <a href="\\#" data-bind="click: cancel" class="k-button btn-transparent pull-right">Cancel</a>
+      <button data-bind="click: save" class="k-button pull-right standard-button68">Submit</button>
+    </div>
+  </div>
+</script>
+<script type="text/x-kendo-template" id="reasonSelection-template">
+  <div id="reasonSelectionForm">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>Reason</h5>
+          </div>
+          <div class="col-xs-7" style="margin-top: 5px;">
+            <input data-role="dropdownlist" data-auto-bind="true"
+                   data-value-primitive="true"
+                   style="width: 275px"
+                   data-text-field="Name"
+                   data-value-field="ReasonId"
+                   required data-required-msg="Select a reason" data-bind="value: selectedReasonId, source: reasons">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <a href="\\#" data-bind="click: cancel" class="k-button btn-transparent pull-right">Cancel</a>
+      @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+      {
+        <button data-bind="click: submit, text: sumbitButtonText" class="k-button pull-right">Unassign</button>
+      }
+    </div>
+  </div>
+</script>
+<script src="~/Scripts/app/scheduler/scheduler.js"></script>

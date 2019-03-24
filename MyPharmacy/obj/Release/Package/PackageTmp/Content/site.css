@@ -1,0 +1,872 @@
+﻿.btn-primary {
+  background-color: #666666 !important;
+  border-color: #666666 !important;
+  color: #FFFFFF;
+  background: #666666 !important;
+}
+
+h5 {
+  font-size: 13px !important;
+  font-weight: 500 !important;
+}
+
+.k-textbox-expand {
+  width: 600px !important;
+}
+
+.k-textbox-medium-expand {
+  width: 340px !important;
+}
+
+.modal.modal-wide .modal-dialog {
+  width: 90%;
+}
+
+.modal-wide .modal-body {
+  overflow-y: auto;
+}
+
+.btn-transparent {
+  color: #428bca !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+}
+
+  .btn-transparent:hover {
+    text-decoration: underline !important;
+  }
+
+.dragoption {
+  background-color: lightGray !important;
+  color: black !important;
+}
+
+.dragEvent {
+  margin: 5px;
+}
+
+.span-outline {
+  padding-bottom: 1px;
+  padding-left: 14px;
+  padding-right: 0px;
+  padding-top: 0px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  border-color: #d6e9c6;
+  border-width: 1px;
+  border-style: solid;
+  margin-top: 2px;
+}
+
+.template-padding {
+  padding-left: 6px !important;
+}
+
+.editor-margin {
+  margin-top: 3px !important;
+}
+
+.label-padding {
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 10px;
+}
+
+.popup-label-padding {
+  padding-bottom: 0;
+  padding-left: 10px;
+  padding-right: 0;
+  padding-top: 8px;
+  font-weight: bold;
+}
+
+.checkbox-padding {
+  padding-bottom: 0;
+  padding-left: 20px;
+  padding-right: 10px;
+  padding-top: 0;
+}
+
+.link-padding {
+  padding-bottom: 0;
+  padding-left: 15px;
+  padding-right: 0;
+  padding-top: 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.k-window .k-loading-mask {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.multiselect-control {
+  background-color: #F8F8F8 !important;
+  color: #676767 !important;
+  border-color: #ccc !important;
+  -webkit-box-sizing: content-box !important;
+  -moz-box-sizing: content-box !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  white-space: normal !important;
+  width: 450px !important;
+  border-radius: 5px !important;
+  -webkit-border-radius: 5px !important;
+}
+
+.form-large {
+  font-size: 26px;
+}
+
+.small-textbox-width {
+  max-width: 50px !important;
+}
+
+.form-large .control-label {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  line-height: normal;
+}
+
+.form-large input, .form-large button {
+  font-size: 30px;
+  padding: 10px;
+  height: auto;
+  line-height: normal;
+}
+
+.k-multiselect-wrap > ul > .k-button {
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.k-multiselect-wrap li {
+  margin: 3px !important;
+  padding: 0 .15em 0 .857em !important;
+}
+
+.k-multiselect-wrap li {
+  line-height: 2.06em !important;
+  float: left !important;
+}
+
+.k-icon, .k-sprite, .k-button-group .k-tool-icon {
+  width: 16px !important;
+  height: 16px !important;
+  overflow: hidden !important;
+  background-repeat: no-repeat !important;
+  font-size: 0px !important;
+  line-height: 0 !important;
+  text-align: center !important;
+  -ms-high-contrast-adjust: none !important;
+}
+
+.k-multiselect .k-delete, .k-multiselect .k-state-hover .k-delete {
+  background-position: -32px -16px !important;
+}
+
+.k-input, input.k-textbox, textarea.k-textbox, input.k-textbox:hover, textarea.k-textbox:hover, .k-textbox > input, .k-multiselect-wrap {
+  background-color: #fff;
+  color: #676767;
+  font-size: 13px;
+}
+
+.k-editor {
+  height: 90px !important;
+  margin-bottom: 3px !important;
+  border-collapse: collapse !important;
+  border-spacing: 0px !important;
+  width: 96% !important;
+}
+
+.k-tool-group .k-tool {
+  line-height: 23px !important;
+}
+
+.k-tool-icon {
+  margin-right: 20px;
+}
+
+.k-span {
+  width: 103% !important;
+  border-radius: 6px;
+  outline: 0;
+  padding: 2px .3em;
+  line-height: 1.6em;
+  border-width: 1px;
+  border-style: solid;
+  display: inline-block;
+  border-color: #ccc;
+}
+
+.k-window .k-loading-mask {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.panel-heading a:after {
+  font-family: 'Glyphicons Halflings';
+  content: "\e114";
+  float: right;
+  color: grey;
+}
+
+.panel-heading a.collapsed:after {
+  content: "\e080";
+}
+
+.k-multiselect .k-button {
+  color: #444 !important;
+  border-color: #f9f9f9 !important;
+  background-color: #f9f9f9 !important;
+  padding-left: 20px !important;
+  padding-right: 10px !important;
+}
+
+#driverEntryView .panel-default > .panel-heading {
+  background: #6E9BB9;
+}
+
+#driverEntryView .panel-heading {
+  color: white;
+}
+
+#driverGrid th.k-header,
+.k-grid-header .wrap-header {
+  background: #6E9BB9;
+  white-space: normal;
+}
+
+#driverGrid th.k-header,
+th.k-header .k-link {
+  color: white;
+}
+
+
+/*#driverEditorform .k-dropdown, .k-textbox, .k-datepicker {
+  width: 250px !important;
+}*/
+
+/*   Fix Common Bootstrap Version Styles */
+body {
+  font-family: "Open Sans",Arial,Helvetica,Sans-Serif !important;
+  font-size: 13px !important;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  font-family: "Open Sans",Arial,Helvetica,Sans-Serif !important;
+  font-weight: 500 !important;
+}
+
+.row {
+  margin-left: -13px !important;
+  margin-right: -13px !important;
+}
+/*   Fix Common Bootstrap Version Styles */
+
+.k-filter-menu {
+  padding: 4px !important;
+}
+
+.orange {
+  background-color: #FF8040;
+  color: white;
+}
+
+.blue {
+  background-color: #40BFFF;
+  color: white;
+}
+
+.k-grid td {
+  white-space: nowrap;
+}
+
+#header {
+  background-color: #ffffff !important;
+  background-image: none !important;
+}
+
+.k-grid-header {
+  font-size: 11px;
+}
+
+.k-grid-content {
+  font-size: 11px !important;
+}
+
+.k-grid-header .custom-header {
+  height: auto !important;
+  white-space: normal !important;
+}
+
+.k-grid-content-locked, .k-grid-content, .k-pager-wrap {
+  font-size: 11px !important;
+}
+
+.panel-body {
+  padding: 5px !important;
+}
+
+.k-item .k-label > input {
+  margin-right: 3px !important;
+  margin-bottom: -3px !important;
+}
+
+.panel-default > .wizard-heading {
+  color: #333;
+  background-color: #f5f5f5;
+  border-color: #ddd;
+}
+
+.wizard-heading {
+  padding: 5px 10px;
+  border-bottom: 1px solid transparent;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+
+#rootwizard .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  background-color: #666666 !important;
+  cursor: default;
+}
+
+#rootwizard .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  color: #fff !important;
+}
+
+#rootwizard .nav > li > a {
+  color: black !important;
+  background-color: #ddd !important;
+  cursor: default;
+}
+
+.tab-pane {
+  height: 300px;
+}
+
+.tabs-left > .tab-content {
+  margin-left: 200px !important;
+  padding-right: 15px !important;
+  padding-left: 15px !important;
+  border-left: 1px solid #ddd !important;
+}
+
+#rootwizard .k-invalid-msg {
+  margin-bottom: 5px !important;
+}
+
+.k-invalid-msg {
+  margin-bottom: 5px !important;
+}
+
+.login-info img {
+  border-left: 0 !important;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  .k-dropdown-wrap, .k-numeric-wrap {
+    padding-bottom: 1px !important;
+  }
+}
+
+.popover {
+  max-width: none !important;
+}
+
+#tripManipulatorView .toolbar {
+  margin-left: 5px;
+}
+
+#tripManipulatorView .k-grid tbody .k-button, .k-ie8 .k-grid tbody button.k-button {
+  min-width: 35px !important;
+}
+
+#tripManipulatorView tbody tr:hover {
+  background-color: #03a9f4 !important;
+  color: #fff !important;
+}
+
+.dragdrop {
+  opacity: .5 !important;
+  cursor: move !important;
+  border: solid 1px black !important;
+}
+
+.cell-dragdrop {
+  opacity: .5 !important;
+  cursor: move !important;
+  background: gray;
+}
+
+.notallowed {
+  cursor: no-drop !important;
+}
+
+#tripManipulatorView .k-filtercell > span {
+  padding-right: 23px !important;
+}
+
+#tripManipulatorView .k-filter-row .k-dropdown-operator {
+  right: 0 !important;
+}
+
+#tripManipulatorView .k-dropdown-wrap {
+  height: 22px !important;
+}
+
+#tripManipulatorView .k-select {
+  line-height: 20px !important;
+}
+
+.searchBox {
+  width: 400px !important;
+  top: 10px;
+}
+
+#tripView .k-grid tbody .k-button, .k-ie8 .k-grid tbody button.k-button {
+  min-width: 35px !important;
+}
+
+#shipmentView .k-grid tbody .k-button, .k-ie8 .k-grid tbody button.k-button {
+  min-width: 35px !important;
+}
+
+#unprocessedServiceRequestViewWindow .k-grid tbody .k-button, .k-ie8 .k-grid tbody button.k-button {
+  min-width: 35px !important;
+}
+
+#lineItemViewWindow {
+  min-height: 130px;
+}
+
+.loginlogo {
+  max-width: 75%;
+  margin-bottom: 15px;
+}
+
+#filterDetails .k-autocomplete {
+  width: 350px;
+}
+
+/*Ratecard Manager Styles*/
+#createTariff-editor .k-tooltip-validation {
+  margin-top: 5px !important;
+  display: inline-block;
+  position: relative;
+  overflow: visible;
+  white-space: normal;
+}
+
+#createTariff-editor #selectedModifierGrid .k-tooltip-validation {
+  float: left;
+}
+
+#createTariff-editor .k-callout {
+  display: none;
+}
+
+#createCharge-editor .k-tooltip-validation {
+  margin-top: 5px !important;
+  display: inline-block;
+  position: relative;
+  overflow: visible;
+  white-space: normal;
+}
+
+#createCharge-editor #chargeValueGrid .k-tooltip-validation, #createCharge-editor #chargeSelectedModifierGrid .k-tooltip-validation {
+  float: left;
+}
+
+#createCharge-editor .k-callout {
+  display: none;
+}
+
+#tariff-editorarea .k-tooltip-validation {
+  margin-top: 5px !important;
+  display: inline-block;
+  position: relative;
+  overflow: visible;
+  white-space: normal;
+}
+
+#tariff-editorarea #editSelectedModifierGrid .k-tooltip-validation {
+  float: left;
+}
+
+#tariff-editorarea .k-callout {
+  display: none;
+}
+
+#charge-editorarea .k-tooltip-validation {
+  margin-top: 5px !important;
+  display: inline-block;
+  position: relative;
+  overflow: visible;
+  white-space: normal;
+}
+
+
+#charge-editorarea #editChargeValuesGrid .k-tooltip-validation,
+#charge-editorarea #editChargeSelectedModifierGrid .k-tooltip-validation {
+  float: left;
+}
+
+
+#charge-editorarea .k-callout {
+  display: none;
+}
+
+.custom-editor {
+  padding-left: 15px;
+  padding-right: 15px;
+  float: left;
+}
+
+#editChargeSelectedModifierGrid input, #editChargeSelectedConditionGrid input,
+#editChargeValuesGrid input, #editChargeSelectedCommentGrid input {
+  width: 100% !important;
+}
+/*End of Ratecard Manager Styles*/
+
+#podTripEditor #shipmentsGrid .k-tooltip-validation {
+  margin-top: 5px !important;
+  display: block;
+  position: relative;
+  padding: 0;
+  overflow: visible;
+  white-space: normal;
+}
+
+#podTripEditor #shipmentsGrid .k-callout {
+  display: none;
+}
+
+.k-grid-Check, .k-grid-UnCheck, .k-grid-PODShipments, .k-grid-HeaderCheck {
+  min-width: 35px !important;
+}
+
+.k-grid-Check, .k-grid-UnCheck, .k-grid-HeaderCheck {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  background-image: none;
+  font-size: 15px;
+}
+
+#podTripEditor #shipmentsGrid .k-header {
+  overflow: visible;
+  white-space: normal;
+}
+
+#shipmentFileImport .k-header {
+  border: 1px solid #C5C5C5;
+}
+
+#podTripEditor .k-dropzone {
+  height: 50px;
+  transition: width 2s ease 0s;
+  visibility: visible;
+}
+
+  #podTripEditor .k-dropzone em {
+    visibility: visible;
+  }
+
+.filelist {
+  border: medium none !important;
+  background-color: transparent;
+}
+
+.file {
+  border: 1px solid #e9e9e9;
+  border-radius: 3px;
+  cursor: pointer;
+  float: left;
+  height: 80px;
+  margin: 2px;
+  padding: 5px;
+  width: 140px !important;
+  float: left;
+}
+
+#acceptTripForm .k-invalid-msg {
+  text-align: left !important;
+}
+
+#driverAvailabilityView .panel-heading {
+  color: white;
+  background: darkgrey;
+}
+
+#overtimeSummaryView .panel-heading {
+  color: white;
+  background: #6E9BB9;
+}
+/*.k-multiselect {
+      display: inline-block !important;
+      position: absolute;
+      width: 400px !important;
+    }*/
+.k-grid tbody .k-button, .k-ie8 .k-grid tbody button.k-button {
+  min-width: 35px !important;
+}
+
+.custom-dragdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+  .custom-dragdrop .custom-dragdrop-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #FFF;
+    opacity: 0.5;
+  }
+
+  .custom-dragdrop .custom-dragdrop-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-style: dashed;
+    border-color: #3276b1;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+  }
+
+    .custom-dragdrop .custom-dragdrop-container .custom-dragdrop-container-message {
+      width: 400px;
+      text-align: center;
+      margin: 0 auto;
+      background-color: #FFF;
+      border-radius: 6px;
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      border-style: solid;
+      border-width: 2px;
+      border-color: #3276b1;
+      margin-top: 40px;
+      padding: 10px;
+    }
+
+.custom-loading-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#tripEntryView .k-datetimepicker {
+  margin-top: 3px;
+}
+
+.details-href {
+  padding-top: 10px;
+  position: absolute;
+  padding-left: 15px;
+}
+
+#vehicleGrid .popover {
+  width: 280px;
+}
+
+.f5-checkbox {
+  margin-top: 12px !important;
+}
+
+.k-scheduler-monthview .k-scheduler-table td {
+  height: 510px !important;
+}
+
+.k-tabstrip-items li .k-button {
+  line-height: 1;
+  padding: 0;
+  vertical-align: top;
+  margin-bottom: -2px;
+  margin-left: 10px;
+}
+
+.k-tabstrip-items li .k-icon {
+  margin: 0;
+}
+
+.standard-button {
+  width: 80px;
+  margin-left: 5px !important;
+  margin-bottom: 2px !important;
+}
+
+.standard-button68 {
+  width: 68px;
+}
+
+.k-tabstrip > .k-content {
+  min-height: 30px;
+}
+
+.k-scheduler-event-button {
+  height: 15px;
+  width: 15px;
+  background: none;
+  padding: 0;
+  float: right;
+}
+
+.k-scheduler-cancel {
+  color: #428bca !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+  width: 64px;
+}
+
+  .k-scheduler-cancel:hover {
+    text-decoration: underline !important;
+  }
+
+.item {
+  list-style-type: none;
+  min-width: 150px;
+  margin: 5px;
+  line-height: 30px;
+  text-align: center;
+  background-color: grey;
+  color: #ffffff;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.mapMarkerWindow > tbody > tr > td {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.mapWindowCol {
+  background-color: lightgrey;
+  font-weight: bold;
+}
+
+.k-event {
+  font-size: 10px;
+}
+
+.k-dropdown-wrap {
+  background-color: #ffffff !important;
+}
+
+.allocation-color {
+  width: 15px;
+  height: 15px;
+  margin: 3px;
+  float: left;
+}
+
+#calldayGrid .k-grid-header {
+  padding: 0 !important;
+}
+
+#calldayGrid .k-grid-content {
+  overflow-y: visible;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  .k-numeric-wrap {
+    height: 25px !important;
+  }
+}
+
+.si-close {
+  background-position: -160px -80px;
+  background-image: url('/Content/kendo/Uniform/sprite.png');
+  border-color: transparent;
+}
+
+.actionTooltip {
+  color: black;
+}
+
+.callDaySummary {
+  position: absolute;
+  /*top: 490px;*/
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  border: none;
+  background-color: #e9e9e9;
+  /*width: 265px !important;*/
+  display: block;
+  bottom: 0;
+  text-align: left;
+  padding: 3px;
+  margin: 3px;
+}
+
+.sleepOut {
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  color: blue;
+  height: 0;
+}
+
+.k-nav-day {
+  right: 5px !important;
+}
+
+.k-scheduler-table > tbody > tr > td {
+  /*position: absolute !important;*/
+}
+
+.k-list-scroller {
+  overflow-y: auto;
+}
+
+.hideSection {
+}
+
+.login-container {
+  position: static !important;
+  left: auto !important;
+  margin-left: 0 !important;
+}
+
+#exportMenu {
+  margin-right: 3px;
+}
+
+  #exportMenu .k-link {
+    line-height: 12px;
+  }
+
+  #exportMenu .k-menu .k-item, .k-widget.k-menu-horizontal>.k-item {
+    border: none !important;
+  }

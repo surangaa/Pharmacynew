@@ -1,0 +1,65 @@
+﻿@using System.Globalization
+@using FieldForce.Online.Core
+@{
+  Layout = "~/Views/Shared/_Layout.cshtml";
+  ViewBag.Title = "Workload";
+}
+<section>
+  <h1>
+    Workload
+    <div class="btn-group pull-right">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Export <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a id="exportExcelBtnId" href="#"><span class="fa fa-fw fa-file-excel-o"></span>&nbsp;Export to Excel</a></li>
+        <li><a id="exportPdfBtnId" href="#"><span class="fa fa-fw fa-file-pdf-o"></span>&nbsp;Export to PDF</a></li>
+      </ul>
+    </div>
+  </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div id="workloadView">
+      <div class="col-xs-12">
+        <p>
+          <div class="row-detail">
+          </div>
+        </p>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-12">
+                <label>@ViewBag.ScenarioText:&nbsp;&nbsp;</label>
+                <input id="scenarios" data-role="combobox" data-placeholder='@ViewBag.ScenarioText' style="width: 300px" data-bind="value: selectedScenario" />&nbsp;&nbsp;&nbsp;<label>@ViewBag.AllocationText:&nbsp;&nbsp;</label>
+                <select id="allocations" multiple="multiple"></select>
+              </div>
+            </div>
+            <div class="row-detail" style="padding: 5px">
+              <div id="workloadGrid"></div>
+            </div>
+            <div class="row-detail" style="padding: 5px">
+              <div id="totalVisitChart"></div>
+            </div>
+            <div class="row-detail" style="padding: 5px">
+              <div id="totalTimeChart"></div>
+            </div>
+            <div class="row-detail" style="padding: 5px">
+              <div id="utilizationChart"></div>
+            </div>
+            <div class="row-detail" style="padding: 5px">
+              <div id="visitTimeChart"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="editorWindow"></div>
+  <input id="isAdmin" type="hidden" value="@User.IsInRole(GlobalConstants.AdminRole).ToString(CultureInfo.InvariantCulture)">
+  <input id="isReviewActions" type="hidden" value="@User.IsInRole(GlobalConstants.ReviewActionsRole).ToString(CultureInfo.InvariantCulture)">
+  <input id="isReadOnly" type="hidden" value="@User.IsInRole(GlobalConstants.ReadOnlyRole).ToString(CultureInfo.InvariantCulture)" />
+</section>
+
+<script src="~/Scripts/app/workload/workload.js"></script>

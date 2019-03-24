@@ -1,0 +1,146 @@
+﻿@using MyPharmacy.Core
+@{
+  ViewBag.Title = "User Groups";
+}
+<section>
+  <h1>
+    User Groups&nbsp;&nbsp;
+    @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+    {
+      <button id="addNew" type="button" class="btn btn-primary">Create</button>
+    }
+  </h1>
+</section>
+<section class="content">
+  <div id="manageGroups" class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div id="groupGrid"></div>
+          <div id="editorwindow"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="text/x-kendo-template" id="editor-template">
+  <div id="editor">
+    <div id="editorform">
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default" id="generalPanel">
+          <div class="panel-heading">
+            <h5 class="panel-title">
+              <a data-toggle="collapse" data-target="\#general"
+                 href="\#general">
+                General
+              </a>
+            </h5>
+          </div>
+          <div id="general" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-xs-3">
+                  <h5>Group Name:</h5>
+                </div>
+                <div class="col-xs-7">
+                  @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+                  {
+                    <input type="text" style="width: 300px; margin-top: 5px;" class="k-textbox" name="name" id="name" data-bind="value:name" required data-required-msg="Enter group name" data-available data-available-msg="Entered group name is not available" />
+                    <span class="k-invalid-msg" data-for="name"></span>
+                  }
+                  else
+                  {
+                    <h5 data-bind="text: name"></h5>
+                  }
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-3">
+                  <h5>Notify Method:</h5>
+                </div>
+                <div class="col-xs-7">
+                  @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+                  {
+                    <input id="notifyMethod" style="width: 300px; margin-top: 5px;" type="text" data-role="dropdownlist" data-auto-bind="false" data-text-field="NotifyMethod" data-value-field="Id" data-bind="value: notifyMethodId, source: notifyMethods, events: { change: changeNotifyMethod }">
+                  }
+                  else
+                  {
+                    <h5 data-bind="text: notifyMethod"></h5>
+                  }
+                </div>
+              </div>
+              <div class="row" data-bind="visible:showNotifyDelayDays">
+                <div class="col-xs-3">
+                  <h5>Notify Delay Days:</h5>
+                </div>
+                <div class="col-xs-7">
+                  @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+                  {
+                    <input type="text" style="width: 300px; padding-top:5px" data-role="numerictextbox"
+                           data-format="n2"
+                           data-step="0.25"
+                           data-min="0" required data-required-msg="Enter notify delay days"
+                           data-max="100" name="notifyDelayDays" id="notifyDelayDays" data-bind="value:notifyDelayDays, enabled: showNotifyDelayDays" />
+                          <span class="k-invalid-msg" data-for="notifyDelayDays"></span>
+                  }
+                  else
+                  {
+                    <h5 data-bind="text: notifyDelayDays"></h5>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default" id="rolesPanel">
+          <div class="panel-heading">
+            <h5 class="panel-title">
+              <a data-toggle="collapse" data-target="\#roles"
+                 href="\#roles">
+                Permissions
+              </a>
+            </h5>
+          </div>
+          <div id="roles" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-xs-3">
+                  <h5>
+                    Permissions:
+                  </h5>
+                </div>
+                <div class="col-xs-7">
+                  @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+                  {
+                    <select data-role="multiselect"
+                            data-placeholder="Type a Permission"
+                            data-value-primitive="true"
+                            data-text-field="Name"
+                            data-value-field="Name"
+                            style="width:300px"
+                            class="textcontent"
+                            data-bind="value: selectedRoles, source: roles"></select>
+                  }
+                  else
+                  {
+                    <h5 data-bind="text: groupRoles"></h5>
+                  }
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="k-state-default">
+        <a href="\\#" id="popup-cancel-button" data-bind="click: cancel" class="k-button btn-transparent pull-right">@(!User.IsInRole(GlobalConstants.ReadOnlyRole) ? "Cancel" : "Close")</a>
+        @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+        {
+          <button id="popup-save-button" data-bind="click: saveItem, text: actionButtonText" class="k-button pull-right"></button>
+        }
+      </div>
+    </div>
+  </div>
+</script>
+<script src="~/Scripts/app/admin/usergroups.js"></script>

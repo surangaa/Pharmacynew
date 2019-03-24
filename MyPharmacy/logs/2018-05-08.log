@@ -1,0 +1,162 @@
+2018-05-08 08:44:04.5539 FATAL System.InvalidOperationException: An error occurred when trying to create a controller of type 'SchedulerController'. Make sure that the controller has a parameterless public constructor. ---> System.TypeInitializationException: The type initializer for 'FieldForce.Online.Web.Controllers.Api.SchedulerController' threw an exception. ---> System.Collections.Generic.KeyNotFoundException: The given key was not present in the dictionary.
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at FieldForce.Online.Web.Controllers.Api.SchedulerController..cctor() in E:\Work\FieldForceOnline\FieldForce.Online\Controllers\Api\SchedulerController.cs:line 29
+   --- End of inner exception stack trace ---
+   at FieldForce.Online.Web.Controllers.Api.SchedulerController..ctor()
+   at lambda_method(Closure )
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   --- End of inner exception stack trace ---
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   at System.Web.Http.Controllers.HttpControllerDescriptor.CreateController(HttpRequestMessage request)
+   at System.Web.Http.Dispatcher.HttpControllerDispatcher.<SendAsync>d__1.MoveNext()
+2018-05-08 08:44:04.5539 FATAL System.InvalidOperationException: An error occurred when trying to create a controller of type 'SchedulerController'. Make sure that the controller has a parameterless public constructor. ---> System.TypeInitializationException: The type initializer for 'FieldForce.Online.Web.Controllers.Api.SchedulerController' threw an exception. ---> System.Collections.Generic.KeyNotFoundException: The given key was not present in the dictionary.
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at FieldForce.Online.Web.Controllers.Api.SchedulerController..cctor() in E:\Work\FieldForceOnline\FieldForce.Online\Controllers\Api\SchedulerController.cs:line 29
+   --- End of inner exception stack trace ---
+   at FieldForce.Online.Web.Controllers.Api.SchedulerController..ctor()
+   at lambda_method(Closure )
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   --- End of inner exception stack trace ---
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   at System.Web.Http.Controllers.HttpControllerDescriptor.CreateController(HttpRequestMessage request)
+   at System.Web.Http.Dispatcher.HttpControllerDispatcher.<SendAsync>d__1.MoveNext()
+2018-05-08 08:44:59.1230 FATAL System.InvalidOperationException: An error occurred when trying to create a controller of type 'SchedulerController'. Make sure that the controller has a parameterless public constructor. ---> System.TypeInitializationException: The type initializer for 'FieldForce.Online.Web.Controllers.Api.SchedulerController' threw an exception. ---> System.Collections.Generic.KeyNotFoundException: The given key was not present in the dictionary.
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at FieldForce.Online.Web.Controllers.Api.SchedulerController..cctor() in E:\Work\FieldForceOnline\FieldForce.Online\Controllers\Api\SchedulerController.cs:line 29
+   --- End of inner exception stack trace ---
+   at FieldForce.Online.Web.Controllers.Api.SchedulerController..ctor()
+   at lambda_method(Closure )
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   --- End of inner exception stack trace ---
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   at System.Web.Http.Controllers.HttpControllerDescriptor.CreateController(HttpRequestMessage request)
+   at System.Web.Http.Dispatcher.HttpControllerDispatcher.<SendAsync>d__1.MoveNext()
+2018-05-08 08:44:59.2300 FATAL System.InvalidOperationException: An error occurred when trying to create a controller of type 'SchedulerController'. Make sure that the controller has a parameterless public constructor. ---> System.TypeInitializationException: The type initializer for 'FieldForce.Online.Web.Controllers.Api.SchedulerController' threw an exception. ---> System.Collections.Generic.KeyNotFoundException: The given key was not present in the dictionary.
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at FieldForce.Online.Web.Controllers.Api.SchedulerController..cctor() in E:\Work\FieldForceOnline\FieldForce.Online\Controllers\Api\SchedulerController.cs:line 29
+   --- End of inner exception stack trace ---
+   at FieldForce.Online.Web.Controllers.Api.SchedulerController..ctor()
+   at lambda_method(Closure )
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   --- End of inner exception stack trace ---
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   at System.Web.Http.Controllers.HttpControllerDescriptor.CreateController(HttpRequestMessage request)
+   at System.Web.Http.Dispatcher.HttpControllerDispatcher.<SendAsync>d__1.MoveNext()
+2018-05-08 08:45:09.5623 FATAL System.InvalidOperationException: An error occurred when trying to create a controller of type 'SchedulerController'. Make sure that the controller has a parameterless public constructor. ---> System.TypeInitializationException: The type initializer for 'FieldForce.Online.Web.Controllers.Api.SchedulerController' threw an exception. ---> System.Collections.Generic.KeyNotFoundException: The given key was not present in the dictionary.
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at FieldForce.Online.Web.Controllers.Api.SchedulerController..cctor() in E:\Work\FieldForceOnline\FieldForce.Online\Controllers\Api\SchedulerController.cs:line 29
+   --- End of inner exception stack trace ---
+   at FieldForce.Online.Web.Controllers.Api.SchedulerController..ctor()
+   at lambda_method(Closure )
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   --- End of inner exception stack trace ---
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   at System.Web.Http.Controllers.HttpControllerDescriptor.CreateController(HttpRequestMessage request)
+   at System.Web.Http.Dispatcher.HttpControllerDispatcher.<SendAsync>d__1.MoveNext()
+2018-05-08 08:45:09.6579 FATAL System.InvalidOperationException: An error occurred when trying to create a controller of type 'SchedulerController'. Make sure that the controller has a parameterless public constructor. ---> System.TypeInitializationException: The type initializer for 'FieldForce.Online.Web.Controllers.Api.SchedulerController' threw an exception. ---> System.Collections.Generic.KeyNotFoundException: The given key was not present in the dictionary.
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at FieldForce.Online.Web.Controllers.Api.SchedulerController..cctor() in E:\Work\FieldForceOnline\FieldForce.Online\Controllers\Api\SchedulerController.cs:line 29
+   --- End of inner exception stack trace ---
+   at FieldForce.Online.Web.Controllers.Api.SchedulerController..ctor()
+   at lambda_method(Closure )
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   --- End of inner exception stack trace ---
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   at System.Web.Http.Controllers.HttpControllerDescriptor.CreateController(HttpRequestMessage request)
+   at System.Web.Http.Dispatcher.HttpControllerDispatcher.<SendAsync>d__1.MoveNext()
+2018-05-08 08:45:26.5583 FATAL System.InvalidOperationException: An error occurred when trying to create a controller of type 'SchedulerController'. Make sure that the controller has a parameterless public constructor. ---> System.TypeInitializationException: The type initializer for 'FieldForce.Online.Web.Controllers.Api.SchedulerController' threw an exception. ---> System.Collections.Generic.KeyNotFoundException: The given key was not present in the dictionary.
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at FieldForce.Online.Web.Controllers.Api.SchedulerController..cctor() in E:\Work\FieldForceOnline\FieldForce.Online\Controllers\Api\SchedulerController.cs:line 29
+   --- End of inner exception stack trace ---
+   at FieldForce.Online.Web.Controllers.Api.SchedulerController..ctor()
+   at lambda_method(Closure )
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   --- End of inner exception stack trace ---
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   at System.Web.Http.Controllers.HttpControllerDescriptor.CreateController(HttpRequestMessage request)
+   at System.Web.Http.Dispatcher.HttpControllerDispatcher.<SendAsync>d__1.MoveNext()
+2018-05-08 08:45:26.6283 FATAL System.InvalidOperationException: An error occurred when trying to create a controller of type 'SchedulerController'. Make sure that the controller has a parameterless public constructor. ---> System.TypeInitializationException: The type initializer for 'FieldForce.Online.Web.Controllers.Api.SchedulerController' threw an exception. ---> System.Collections.Generic.KeyNotFoundException: The given key was not present in the dictionary.
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at FieldForce.Online.Web.Controllers.Api.SchedulerController..cctor() in E:\Work\FieldForceOnline\FieldForce.Online\Controllers\Api\SchedulerController.cs:line 29
+   --- End of inner exception stack trace ---
+   at FieldForce.Online.Web.Controllers.Api.SchedulerController..ctor()
+   at lambda_method(Closure )
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   --- End of inner exception stack trace ---
+   at System.Web.Http.Dispatcher.DefaultHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+   at System.Web.Http.Controllers.HttpControllerDescriptor.CreateController(HttpRequestMessage request)
+   at System.Web.Http.Dispatcher.HttpControllerDispatcher.<SendAsync>d__1.MoveNext()
+2018-05-08 09:00:00.0280 INFO Reminder reviewer via email job started
+2018-05-08 09:00:00.0280 INFO Reminder reviewer escalation via email job started
+2018-05-08 09:00:00.3592 INFO Filtering actions initiated by 2 child users of 7-test@opsisystems.com.au
+2018-05-08 09:00:00.3592 INFO No actions initiated by child users of 7-test@opsisystems.com.au
+2018-05-08 09:00:00.3872 INFO Filtering actions initiated by 2 child users of 9-test@hotmail.com
+2018-05-08 09:00:00.3872 INFO No actions initiated by child users of 9-test@hotmail.com
+2018-05-08 09:00:00.4179 INFO Filtering actions initiated by 6 child users of 167-phil.jenkinson@lionco.com
+2018-05-08 09:00:00.4229 INFO No actions initiated by child users of 167-phil.jenkinson@lionco.com
+2018-05-08 09:00:00.4479 INFO Filtering actions initiated by 8 child users of 168-hayden.bell@lionco.com
+2018-05-08 09:00:00.4549 INFO No actions initiated by child users of 168-hayden.bell@lionco.com
+2018-05-08 09:00:00.4929 INFO Filtering actions initiated by 7 child users of 169-wade.dean@lionco.com
+2018-05-08 09:00:00.5024 INFO No actions initiated by child users of 169-wade.dean@lionco.com
+2018-05-08 09:00:00.5404 INFO Filtering actions initiated by 7 child users of 170-brian.king@lionco.com
+2018-05-08 09:00:00.5484 INFO No actions initiated by child users of 170-brian.king@lionco.com
+2018-05-08 09:00:00.6019 INFO Filtering actions initiated by 9 child users of 171-julian.black@lionco.com
+2018-05-08 09:00:00.6115 INFO No actions initiated by child users of 171-julian.black@lionco.com
+2018-05-08 09:00:00.6605 INFO Filtering actions initiated by 6 child users of 172-lee.monnox@lionco.com
+2018-05-08 09:00:00.6605 INFO No actions initiated by child users of 172-lee.monnox@lionco.com
+2018-05-08 09:00:00.8236 INFO Filtering actions initiated by 8 child users of 173-nathan.brown@lionco.com
+2018-05-08 09:00:00.8321 INFO No actions initiated by child users of 173-nathan.brown@lionco.com
+2018-05-08 09:00:00.8706 INFO Filtering actions initiated by 3 child users of 174-andrew.haniford@lionco.com
+2018-05-08 09:00:00.8787 INFO No actions initiated by child users of 174-andrew.haniford@lionco.com
+2018-05-08 09:00:00.9277 INFO Filtering actions initiated by 9 child users of 175-chris.o'donohue@lionco.com
+2018-05-08 09:00:00.9342 INFO No actions initiated by child users of 175-chris.o'donohue@lionco.com
+2018-05-08 09:00:00.9713 INFO Filtering actions initiated by 10 child users of 176-jordan.myers@lionco.com
+2018-05-08 09:00:00.9713 INFO No actions initiated by child users of 176-jordan.myers@lionco.com
+2018-05-08 09:00:01.0569 INFO Filtering actions initiated by 8 child users of 177-chris.crouch@lionco.com
+2018-05-08 09:00:01.0639 INFO No actions initiated by child users of 177-chris.crouch@lionco.com
+2018-05-08 09:00:01.1550 INFO Filtering actions initiated by 1 child users of 178-nicole.alizzi@lionco.com
+2018-05-08 09:00:01.1550 INFO No actions initiated by child users of 178-nicole.alizzi@lionco.com
+2018-05-08 09:00:01.2220 INFO Filtering actions initiated by 11 child users of 179-marc.woolnough@lionco.com
+2018-05-08 09:00:01.2220 INFO No actions initiated by child users of 179-marc.woolnough@lionco.com
+2018-05-08 09:00:01.2941 INFO Filtering actions initiated by 5 child users of 180-rick.payne@lionco.com
+2018-05-08 09:00:01.2941 INFO No actions initiated by child users of 180-rick.payne@lionco.com
+2018-05-08 09:00:01.3611 INFO Filtering actions initiated by 3 child users of 181-andrew.tully@lionco.com
+2018-05-08 09:00:01.3611 INFO No actions initiated by child users of 181-andrew.tully@lionco.com
+2018-05-08 09:00:01.4282 INFO Filtering actions initiated by 8 child users of 182-todd.winstanley@lionco.com
+2018-05-08 09:00:01.4282 INFO No actions initiated by child users of 182-todd.winstanley@lionco.com
+2018-05-08 09:00:01.4992 INFO Filtering actions initiated by 5 child users of 183-warwick.parks@lionco.com
+2018-05-08 09:00:01.4992 INFO No actions initiated by child users of 183-warwick.parks@lionco.com
+2018-05-08 09:00:01.5703 INFO Filtering actions initiated by 9 child users of 184-adam.macpherson@lionco.com
+2018-05-08 09:00:01.5763 INFO No actions initiated by child users of 184-adam.macpherson@lionco.com
+2018-05-08 09:00:01.6633 INFO 185-warwick.armstrong@lionco.com is not parent of any user
+2018-05-08 09:00:01.7514 INFO Filtering actions initiated by 6 child users of 186-sacha.stewart@lionco.com
+2018-05-08 09:00:01.7514 INFO No actions initiated by child users of 186-sacha.stewart@lionco.com
+2018-05-08 09:00:01.8555 INFO Filtering actions initiated by 4 child users of 189-tony.vitelli@lionco.com
+2018-05-08 09:00:01.8615 INFO No actions initiated by child users of 189-tony.vitelli@lionco.com
+2018-05-08 09:00:01.9501 INFO Filtering actions initiated by 6 child users of 190-josh.clarke@lionco.com
+2018-05-08 09:00:01.9501 INFO No actions initiated by child users of 190-josh.clarke@lionco.com
+2018-05-08 09:00:02.0484 INFO Filtering actions initiated by 4 child users of 191-jason.thomas@lionco.com
+2018-05-08 09:00:02.0484 INFO No actions initiated by child users of 191-jason.thomas@lionco.com
+2018-05-08 09:00:02.1825 INFO Filtering actions initiated by 3 child users of 192-peter.harrison@lionco.com
+2018-05-08 09:00:02.1906 INFO No actions initiated by child users of 192-peter.harrison@lionco.com
+2018-05-08 09:00:02.2286 INFO Reminder reviewer escalation via email job completed
+2018-05-08 09:00:02.3277 INFO Filtering actions initiated by 4 child users of 193-jason.baily@lionco.com
+2018-05-08 09:00:02.3277 INFO No actions initiated by child users of 193-jason.baily@lionco.com
+2018-05-08 09:00:02.4718 INFO Filtering actions initiated by 3 child users of 194-patrick.donohue@lionco.com
+2018-05-08 09:00:02.4718 INFO No actions initiated by child users of 194-patrick.donohue@lionco.com
+2018-05-08 09:00:02.5969 INFO Filtering actions initiated by 3 child users of 195-greg.morianos@lionco.com
+2018-05-08 09:00:02.6069 INFO No actions initiated by child users of 195-greg.morianos@lionco.com
+2018-05-08 09:00:02.7310 INFO Filtering actions initiated by 8 child users of 196-warwick.parks@lionco.com
+2018-05-08 09:00:02.7310 INFO No actions initiated by child users of 196-warwick.parks@lionco.com
+2018-05-08 09:00:02.8030 INFO Filtering actions initiated by 5 child users of 197-jamie.ryan@lionco.com
+2018-05-08 09:00:02.8110 INFO No actions initiated by child users of 197-jamie.ryan@lionco.com
+2018-05-08 09:00:02.8771 INFO Filtering actions initiated by 8 child users of 1204-dean.matthews@lionco.com
+2018-05-08 09:00:02.8771 INFO No actions initiated by child users of 1204-dean.matthews@lionco.com
+2018-05-08 09:00:02.9416 INFO 1205-c@b.com is not parent of any user
+2018-05-08 09:00:03.0162 INFO Filtering actions initiated by 5 child users of 1209-kylie.wriede@lionco.com
+2018-05-08 09:00:03.0162 INFO No actions initiated by child users of 1209-kylie.wriede@lionco.com
+2018-05-08 09:00:03.0972 INFO Filtering actions initiated by 7 child users of 1215-john.soccio@lionco.com
+2018-05-08 09:00:03.0972 INFO No actions initiated by child users of 1215-john.soccio@lionco.com
+2018-05-08 09:00:03.1703 INFO Filtering actions initiated by 6 child users of 1217-ashley.fullelove@lionco.com
+2018-05-08 09:00:03.1703 INFO No actions initiated by child users of 1217-ashley.fullelove@lionco.com
+2018-05-08 09:00:03.1703 INFO Reminder reviewer via email job completed

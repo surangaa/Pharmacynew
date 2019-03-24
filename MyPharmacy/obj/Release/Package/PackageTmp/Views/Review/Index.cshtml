@@ -1,0 +1,180 @@
+﻿@using FieldForce.Online.Core
+@using Microsoft.AspNet.Identity
+@{
+  Layout = "~/Views/Shared/_Layout.cshtml";
+  ViewBag.Title = "Review";
+}
+<section>
+  <h1>
+    Review
+  </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div id="reviewGrid"></div>
+          <input id="pageSizes" type="hidden" value="@ConfigurationManager.AppSettings["GridAvailablePageSizes"]" />
+          <input id="reviewActionsRole" type="hidden" value="@User.IsInRole(GlobalConstants.ReviewActionsRole).ToString()" />
+          <input id="currentUserId" type="hidden" value="@User.Identity.GetUserId()" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="editorWindow"></div>
+  <input id="isReadOnly" type="hidden" value="@(User.IsInRole(GlobalConstants.ReadOnlyRole)?"true":"false")" />
+</section>
+<script type="text/x-kendo-template" id="action-template">
+  <div id="actionForm">
+    <div class="panel panel-default">
+      <div class="panel-heading">Action Details</div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>ID</h5>
+          </div>
+          <div class="col-xs-7">
+            <h5 data-bind="text: actionId"></h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>Type</h5>
+          </div>
+          <div class="col-xs-7">
+            <h5 data-bind="text: actionType"></h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>Status</h5>
+          </div>
+          <div class="col-xs-7" data-bind="invisible: canChangeStatus" style="margin-top: 5px;">
+            <label data-bind="text: actionStatusName" style="margin-top: 5px;"></label><a class="k-button standard-button" data-bind="click: changeStatusToCancel, visible: canCancel " href=" \\#"><i class="fa fa-fw fa-times text-danger" aria-hidden="true"></i>Cancel</a>
+          </div>
+          <div class="col-xs-7" style="margin-top: 5px;" data-bind="visible: canChangeStatus">
+            <input id="actionStatus" data-role="dropdownlist"
+                   data-value-primitive="true"
+                   style="width:250px"
+                   data-text-field="ActionStatusName"
+                   data-value-field="ActionStatusId"
+                   data-bind="value: actionStatusId, source: actionStatuses">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>Type</h5>
+          </div>
+          <div class="col-xs-7">
+            <h5 data-bind="text: actionType"></h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>Initiated By</h5>
+          </div>
+          <div class="col-xs-7">
+            <h5 data-bind="text: initiatedBy"></h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>Initiated On</h5>
+          </div>
+          <div class="col-xs-7">
+            <h5 data-bind="text: initiatedOnString"></h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>Old Value</h5>
+          </div>
+          <div class="col-xs-7">
+            <h5 data-bind="text: oldValue"></h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>New Value</h5>
+          </div>
+          <div class="col-xs-7">
+            <h5 data-bind="text: newValue"></h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>@ViewBag.ScenarioText</h5>
+          </div>
+          <div class="col-xs-7">
+            <h5 data-bind="text: scenarioName"></h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>@ViewBag.AllocationText</h5>
+          </div>
+          <div class="col-xs-7">
+            <h5 data-bind="text: allocationName"></h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>Visit Location</h5>
+          </div>
+          <div class="col-xs-7">
+            <h5 data-bind="text: mappointName"></h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>Reviewed By</h5>
+          </div>
+          <div class="col-xs-7">
+            <h5 data-bind="text: reviewedBy"></h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>Reviewed On</h5>
+          </div>
+          <div class="col-xs-7">
+            <h5 data-bind="text: reviewedOnString"></h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>Reason</h5>
+          </div>
+          <div class="col-xs-7" style="margin-top: 5px;">
+            <input id="reasondropdown" data-role="dropdownlist"
+                   data-value-primitive="true"
+                   style="width:250px"
+                   data-text-field="Name"
+                   data-value-field="ReasonId"
+                   data-bind="value: reasonId, source: reasons">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">
+            <h5>Comment</h5>
+          </div>
+          <div class="col-xs-7" style="margin-top: 5px;">
+            <input type="text" name="comment" class="k-textbox" style="width:250px" placeholder="Comment" data-bind="value:comment" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div>
+        <a href="\\#" data-bind="click: cancel" class="k-button btn-transparent pull-right">@(!User.IsInRole(GlobalConstants.ReadOnlyRole) ? "Cancel" : "Close")</a>
+        @if (!User.IsInRole(GlobalConstants.ReadOnlyRole))
+        {
+          <button data-bind="click: submit" class="k-button pull-right standard-button68">Submit</button>
+        }
+      </div>
+    </div>
+  </div>
+</script>
+<script src="~/Scripts/app/review/review.js"></script>
